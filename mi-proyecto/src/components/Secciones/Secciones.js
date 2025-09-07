@@ -12,6 +12,8 @@ function Secciones(props) {
             tipo={sec.tipo}
             endpoint={sec.endpoint}
             verTodas={sec.verTodas}
+            cant={sec.cant}
+
           />
         );
       })}

@@ -17,6 +17,7 @@ function Home() {
       tipo: "movie",
       endpoint: "https://api.themoviedb.org/3/movie/popular?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=1",
       verTodas: "/peliculas",
+     cant: 4
      
     },
     {
@@ -24,6 +25,7 @@ function Home() {
       tipo: "movie",
       endpoint: "https://api.themoviedb.org/3/movie/now_playing?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=1",
       verTodas: "/peliculas",
+      cant: 6
       
     },
   
@@ -32,14 +34,14 @@ function Home() {
       tipo: "tv",
       endpoint: "https://api.themoviedb.org/3/tv/popular?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=1",
       verTodas: "/series",
-      color: "amarillo"
+       cant: 4
      },
     {
       titulo: "TV shows airing today",
       tipo: "tv",
       endpoint: "https://api.themoviedb.org/3/tv/on_the_air?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=1",
       verTodas: "/series",
-      color: "amarillo"
+      cant: 6
     },
   ];
 

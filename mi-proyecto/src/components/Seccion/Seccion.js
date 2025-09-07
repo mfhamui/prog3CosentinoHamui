@@ -22,7 +22,7 @@ class Seccion extends Component {
             <p>Cargando...</p>
           ) : (
             this.state.datos.map((item, i) => {
-              if (i < 4) {   // <<< mostramos solo los 4 primeros
+              if (i < this.props.cant){
                 return (
                   <SeccionItem
                     key={item.id}
