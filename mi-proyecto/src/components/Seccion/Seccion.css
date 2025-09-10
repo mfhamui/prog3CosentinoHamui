@@ -1,58 +1,55 @@
+/* separa las secciones en Home */
 .home-section {
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
-/* caja de título + botón "ver todas" */
-.info-box{
-  background:#e0f2ff;
-  border:1px solid #bfe0ff;
-  padding:14px 16px;
-  border-radius:6px;
-  margin:8px 0;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+/* caja del título (estilo alert-primary) */
+.info-box {
+  background-color: #dbeafe;   /* azul claro */
+  border: 1px solid #bfdbfe;   /* borde azul */
+  color: #1e40af;              /* texto azul */
+  border-radius: 4px;
+  padding: 10px 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.info-box-yellow{
-  background:#fff3c4;
-  border:1px solid #ffe08a;
-  padding:14px 16px;
-  border-radius:6px;
-  margin:8px 0;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+/* título dentro de la caja */
+.info-box h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 1.2;
 }
 
-.info-box h2,
-.info-box-yellow h2 {
-  margin:0;
-  font-size: 20px;
-}
-
+/* botón "Ver todas" sencillo */
 .ver-todas {
-  text-decoration:none;
-  color:#0b63a8;
-  font-weight:600;
+  text-decoration: none;
+  color: #0b63a8;
+  font-weight: bold;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #d5e9ff;
+  background-color: #e8f3ff;
 }
 
-/* grilla de cards */
-.cards-grid{
-  display:grid;
-  gap:20px;
-  grid-template-columns: repeat(4, 1fr);
-  margin-top:14px;
+/* CONTENEDOR DE CARDS (igual espíritu que .cards de tu CSS) */
+.cards-grid {
+  padding: 12px 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between; /* reparte en la fila */
+  margin-bottom: 2%;
 }
 
-@media (max-width: 992px){
-  .cards-grid{ grid-template-columns: repeat(3, 1fr); }
-}
-
-@media (max-width: 768px){
-  .cards-grid{ grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 560px){
-  .cards-grid{ grid-template-columns: 1fr; }
+/* responsivo para el título */
+@media (max-width: 520px){
+  .info-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .info-box h2 { font-size: 22px; }
 }

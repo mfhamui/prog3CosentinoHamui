@@ -22,34 +22,34 @@ class SeccionItem extends Component {
   }
 
   render(){
-    const d = this.state.data;
+    const datos = this.state.data;
 
     // titulo (movie = title, serie = name)
     const titulo = this.props.tipo === "tv"
-      ? (d.name ? d.name : "(Sin título)")
-      : (d.title ? d.title : "(Sin título)");
+      ? (datos.name ? datos.name : "(Sin título)")
+      : (datos.title ? datos.title : "(Sin título)");
 
     // imagen
     let poster = "/assets/img/placeholder-poster.svg";
-    if (d.poster_path) {
-      poster = "https://image.tmdb.org/t/p/w342" + d.poster_path;
+    if (datos.poster_path) {
+      poster = "https://image.tmdb.org/t/p/w342" + datos.poster_path;
     }
 
     // descripcion
-    const overview = d.overview ? d.overview : "Sin descripción disponible.";
+    const descripcion = datos.overview ? datos.overview : "Sin descripción disponible.";
 
     // link a detalle
-    let detalle = "/peliculas/id/" + d.id;
+    let detalle = "/peliculas/id/" + datos.id;
     if (this.props.tipo === "tv") {
-      detalle = "/series/id/" + d.id;
+      detalle = "/series/id/" + datos.id;
     }
 
     return (
-      <article className="home-item">
+      <article className={`home-i ${this.props.claseExtra}`} >
         <img src={poster} alt={titulo} />
         <h3><Link to={detalle}>{titulo}</Link></h3>
 
-        <p className={this.state.clase}>{overview}</p>
+        <p className={this.state.clase}>{descripcion}</p>
 
         <div className="actions">
           <button className="more" onClick={() => this.boton()}>

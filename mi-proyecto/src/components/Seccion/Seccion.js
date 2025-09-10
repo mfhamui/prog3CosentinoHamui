@@ -12,9 +12,9 @@ class Seccion extends Component {
  
     return (
       <section className="home-section">
-        <div >
+        <div className="info-box">
           <h2>{this.props.titulo}</h2>
-          <a className="ver-todas" href={this.props.verTodas}>Ver todas →</a>
+          <a className="ver-todas" href={this.props.verTodas}>Ver todas </a>
         </div>
 
         <section className="cards-grid">
@@ -28,6 +28,7 @@ class Seccion extends Component {
                     key={item.id}
                     data={item}
                     tipo={this.props.tipo}
+                    claseExtra={this.props.cant === 6 ? "seis" : "cuatro"}
                   />
                 );
               } else {
