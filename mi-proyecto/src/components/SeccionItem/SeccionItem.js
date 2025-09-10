@@ -39,10 +39,8 @@ class SeccionItem extends Component {
     const descripcion = datos.overview ? datos.overview : "Sin descripción disponible.";
 
     // link a detalle
-    let detalle = "/peliculas/id/" + datos.id;
-    if (this.props.tipo === "tv") {
-      detalle = "/series/id/" + datos.id;
-    }
+    const detalle = `/detalle/${this.props.tipo}/${datos.id}`;
+
 
     return (
       <article className={`home-i ${this.props.claseExtra}`} >
