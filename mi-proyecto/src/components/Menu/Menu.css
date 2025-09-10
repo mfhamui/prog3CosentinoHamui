@@ -1,0 +1,37 @@
+/* CONTENEDOR DEL MENÚ */
+.nav {
+  background-color: #eee;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  padding: .5rem;
+
+  display: flex;
+  flex-direction: column; /* en mobile: se apilan */
+}
+
+@media (min-width: 765px){
+  .nav {
+    flex-direction: row;        
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+
+.menu {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+
+  display: flex;
+  align-items: center;
+}
+
+.menu li {
+  margin-right: 16px;
+}
+
+.menu a {
+  color: #444;
+  text-decoration: none;
+}

@@ -1,6 +1,7 @@
 import React from "react";
 import Menu from "../../components/Menu/Menu";
 import Secciones from "../../components/Secciones/Secciones";
+import Footer from "../../components/Footer/Footer";
 
 function Home() {
   let itemsMenu = [
@@ -47,10 +48,13 @@ function Home() {
 
   return (
     <React.Fragment>
-      <Menu itemsMenu={itemsMenu} />
       <h1>TV Fan </h1>
+      <Menu itemsMenu={itemsMenu} />
+      
 
         <Secciones lista={secciones} />
+
+         <Footer /> 
     </React.Fragment>
   );
 }
