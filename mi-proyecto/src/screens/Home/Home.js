@@ -7,7 +7,7 @@ function Home() {
   let itemsMenu = [
     { ruta: "/",            nombre: "Home" },
     { ruta: "/peliculas/popular", nombre: "Películas Populares" },
-    { ruta: "/peliculas/now_playing", nombre: "Películas en Emisión" },
+    { ruta: "/peliculas/now_playing", nombre: "Películas en Cartelera" },
     { ruta: "/series/popular", nombre: "Series Populares" },
      { ruta: "/series/on_the_air", nombre: "Series en Emisión" },
     { ruta: "/favoritos",   nombre: "Favoritas" },

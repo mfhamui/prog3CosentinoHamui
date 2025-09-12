@@ -7,7 +7,7 @@ function Menu(props) {
 
 const items = props.itemsMenu 
   return (
-    <reactFragment>
+    <React.Fragment>
     <h1>TV Fan </h1>
     <nav className="nav">
       
@@ -23,7 +23,7 @@ const items = props.itemsMenu
          <Buscador />
    
     </nav>
-    </reactFragment>
+    </React.Fragment>
   );
 }
 
