@@ -7,7 +7,10 @@ function Menu(props) {
 
 const items = props.itemsMenu 
   return (
+    <reactFragment>
+    <h1>TV Fan </h1>
     <nav className="nav">
+      
       <ul className="menu">
         {items.map((item, idx) => (
           <ElementoMenu
@@ -20,6 +23,7 @@ const items = props.itemsMenu
          <Buscador />
    
     </nav>
+    </reactFragment>
   );
 }
 

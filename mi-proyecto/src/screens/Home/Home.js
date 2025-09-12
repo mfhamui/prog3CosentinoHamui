@@ -6,49 +6,52 @@ import Footer from "../../components/Footer/Footer";
 function Home() {
   let itemsMenu = [
     { ruta: "/",            nombre: "Home" },
-    { ruta: "/peliculas",   nombre: "Películas" },
-    { ruta: "/series",      nombre: "Series" },
+    { ruta: "/peliculas/popular", nombre: "Películas Populares" },
+    { ruta: "/peliculas/now_playing", nombre: "Películas en Emisión" },
+    { ruta: "/series/popular", nombre: "Series Populares" },
+     { ruta: "/series/on_the_air", nombre: "Series en Emisión" },
     { ruta: "/favoritos",   nombre: "Favoritas" },
+  
   ];
 
  
   let secciones = [
     {
-      titulo: "Popular movies this week",
+      titulo: "Peliculas populares de esta semana",
       tipo: "movie",
       endpoint: "https://api.themoviedb.org/3/movie/popular?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=1",
-      verTodas: "/peliculas",
+      verTodas: "/peliculas/popular",
      cant: 4
      
     },
     {
-      titulo: "Movies now playing",
+      titulo: "Peliculas en Cartelera",
       tipo: "movie",
       endpoint: "https://api.themoviedb.org/3/movie/now_playing?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=1",
-      verTodas: "/peliculas",
+      verTodas: "/peliculas/now_playing",
       cant: 6
       
     },
   
      {
-      titulo: "Popular TV shows this week",
+      titulo: "Series populares de esta semana",
       tipo: "tv",
       endpoint: "https://api.themoviedb.org/3/tv/popular?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=1",
-      verTodas: "/series",
+      verTodas: "/series/popular",
        cant: 4
      },
     {
-      titulo: "TV shows airing today",
+      titulo: "Series en emisión",
       tipo: "tv",
       endpoint: "https://api.themoviedb.org/3/tv/on_the_air?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=1",
-      verTodas: "/series",
+      verTodas: "/series/on_the_air",
       cant: 6
     },
   ];
 
   return (
     <React.Fragment>
-      <h1>TV Fan </h1>
+    
       <Menu itemsMenu={itemsMenu} />
       
 
