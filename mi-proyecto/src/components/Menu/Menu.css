@@ -1,49 +1,90 @@
-/* Título superior */
-h1 {
+/* Barra de navegación */
+.titulo {
   width: 100%;
-  text-align: left;
-  margin: 16px 16px 8px 16px;
+  text-align: center;
+  margin: 16px 0;
   color: #ffffff;
-  font-size: 28px;
+  font-size: 32px;
   font-weight: bold;
-}
 
-/* Barra de navegación a todo ancho + espacio inferior */
+}
 .nav {
   width: 100%;
-  background-color: #1e3a8a;  /* azul oscuro */
+  background-color: #1e3a8a;   /* azul oscuro */
   padding: 16px;
+  margin-bottom: 24px;         /* separa del contenido */
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-
-  margin-bottom: 24px;        /* <-- separa del contenido (HomeSection) */
+  align-items: center;
 }
 
-/* Desktop: centrado en una fila */
-@media (min-width: 765px){
-  .nav {
+/* Logo */
+.user {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-right: 20px;          /* separa el logo del menú */
+}
+.user img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.user li {
+    display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
+    align-items: flex-start;
 }
 
-/* Lista del menú */
+
+/* Menú de enlaces */
 .menu {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex: 1;                     /* ocupa todo el espacio posible */
+  justify-content: center;     /* centra los items en el medio */
 }
-
-.menu li { margin: 0 16px; }
-
+.menu li {
+  margin: 0 16px;
+}
 .menu a {
   color: #ffffff;
   text-decoration: none;
   font-size: 16px;
   font-weight: 500;
+}
+
+/* Buscador */
+.nav form {
+  margin-left: auto;           /* empuja el buscador a la derecha */
+  display: flex;
+  align-items: center;
+}
+.nav input[type="text"] {
+  padding: 8px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  margin-right: 8px;
+}
+.nav button {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #fff;
+  color: #0b1022;
+  font-weight: 600;
+}
+
+/* Responsive: en pantallas chicas apila todo */
+@media (max-width: 760px){
+  .nav {
+    flex-direction: column;
+    align-items: center;
+  }
+  .user { margin: 0 0 12px 0; }
+  .menu { justify-content: center; margin-bottom: 12px; }
+  .nav form { margin-left: 0; }
 }
