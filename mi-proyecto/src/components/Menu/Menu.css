@@ -1,37 +1,90 @@
-/* CONTENEDOR DEL MENÚ */
+/* Barra de navegación */
+.titulo {
+  width: 100%;
+  text-align: center;
+  margin: 16px 0;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: bold;
+
+}
 .nav {
-  background-color: #eee;
-  border-radius: 4px;
-  margin-bottom: 20px;
-  padding: .5rem;
-
-  display: flex;
-  flex-direction: column; /* en mobile: se apilan */
-}
-
-@media (min-width: 765px){
-  .nav {
-    flex-direction: row;        
-    justify-content: space-between;
-    align-items: center;
-  }
-}
-
-
-.menu {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-
+  width: 100%;
+  background-color: #1e3a8a;   /* azul oscuro */
+  padding: 16px;
+  margin-bottom: 24px;         /* separa del contenido */
   display: flex;
   align-items: center;
 }
 
-.menu li {
-  margin-right: 16px;
+/* Logo */
+.user {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-right: 20px;          /* separa el logo del menú */
+}
+.user img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.user li {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
 }
 
+
+/* Menú de enlaces */
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex: 1;                     /* ocupa todo el espacio posible */
+  justify-content: center;     /* centra los items en el medio */
+}
+.menu li {
+  margin: 0 16px;
+}
 .menu a {
-  color: #444;
+  color: #ffffff;
   text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Buscador */
+.nav form {
+  margin-left: auto;           /* empuja el buscador a la derecha */
+  display: flex;
+  align-items: center;
+}
+.nav input[type="text"] {
+  padding: 8px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  margin-right: 8px;
+}
+.nav button {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #fff;
+  color: #0b1022;
+  font-weight: 600;
+}
+
+/* Responsive: en pantallas chicas apila todo */
+@media (max-width: 760px){
+  .nav {
+    flex-direction: column;
+    align-items: center;
+  }
+  .user { margin: 0 0 12px 0; }
+  .menu { justify-content: center; margin-bottom: 12px; }
+  .nav form { margin-left: 0; }
 }
