@@ -39,9 +39,9 @@ class SeccionItem extends Component {
     const descripcion = datos.overview ? datos.overview : "Sin descripción disponible.";
 
     // link a detalle
+    
     const detalle = `/detalle/${this.props.tipo}/${datos.id}`;
-
-
+    
     return (
       <article className={`home-i ${this.props.claseExtra}`} >
         <img src={poster} alt={titulo} />

@@ -1,0 +1,81 @@
+import React, { Component } from "react";
+import Menu from "../../components/Menu/Menu";
+
+class DetalleP extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: null,
+            cargando: true,
+        };
+    }
+    componentDidMount() {
+        const { tipo, id } = this.props.match.params;
+        const endpoint = `https://api.themoviedb.org/3/${tipo}/${id}?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR`;
+
+        fetch(endpoint)
+            .then((res) => res.json())
+            .then((data) => {
+                this.setState({ data: data, cargando: false });
+            })
+            .catch((error) => console.log(error));
+    }
+
+    render() {
+        let itemsMenu = [
+            { ruta: "/", nombre: "Home" },
+            { ruta: "/peliculas", nombre: "Películas" },
+            { ruta: "/series", nombre: "Series" },
+            { ruta: "/favoritos", nombre: "Favoritas" },
+        ];
+
+        if (this.state.cargando) {
+            return <p>Cargando...</p>;
+        }
+        const datos = this.state.data;
+        const tipo = this.props.match.params.tipo;
+
+        // titulo (movie = title, serie = name)
+        const titulo = tipo === "tv"
+            ? (datos.name ? datos.name : "(Sin título)")
+            : (datos.title ? datos.title : "(Sin título)");
+
+        // imagen
+        let poster = "/assets/img/placeholder-poster.svg";
+        if (datos.poster_path) {
+            poster = "https://image.tmdb.org/t/p/w342" + datos.poster_path;
+        }
+
+        // descripcion
+        const descripcion = datos.overview ? datos.overview : "Sin descripción disponible.";
+        let estreno = tipo === "tv" ? (datos.first_air_date ? datos.first_air_date : "Sin fecha de estreno disponible.") : (datos.release_date ? datos.release_date : "Sin fecha de estreno disponible.");
+        let calificacion = datos.vote_average ? datos.vote_average : "Sin calificación disponible.";
+        let duracion = tipo === "tv" ? ("") : (datos.runtime ? datos.runtime : "Sin duración disponible.");
+        const genre = datos.genres && datos.genres.length > 0
+            ? datos.genres.map((g) => g.name).join(", ")
+            : "Sin género disponible.";
+        
+
+
+
+        return (
+
+            <React.Fragment>
+                <Menu itemsMenu={itemsMenu} />
+                <article className={`home-i ${this.props.claseExtra}`} >
+                    <img src={poster} alt={titulo} />
+                    <h3>{titulo}</h3>
+                    <p>Calificación: {calificacion}</p>
+                    <p>Fecha de estreno: {estreno}</p>
+                    {duracion && <p>Duración: {duracion} minutos</p>}
+                    <p>Sinópsis: {descripcion}</p>
+                    <p>Género: {genre}</p>
+                </article>
+
+            </React.Fragment>
+
+        );
+    }
+}
+
+export default DetalleP;
