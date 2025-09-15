@@ -84,16 +84,7 @@
   margin-top: 8px;           
 }
 
-/* Breakpoints */
-@media (max-width: 1100px){
-  .home-i.cuatro { width: 31%; } /* 3 por fila */
-  .home-i.seis  { width: 23%; }  /* 4 por fila */
-}
-@media (max-width: 820px){
-  .home-i.cuatro,
-  .home-i.seis { width: 48%; }   /* 2 por fila */
-}
-@media (max-width: 600px){
+@media (max-width: 760px){
   .home-i.cuatro,
   .home-i.seis { width: 100%; }  /* 1 por fila */
 }
