@@ -7,8 +7,66 @@ class DetalleP extends Component {
         this.state = {
             data: null,
             cargando: true,
+             fav: false
         };
     }
+
+    
+  Favoritos(item){
+    let favs = localStorage.getItem(item);
+    if (favs === null) {
+      return []; 
+    } else {
+      return JSON.parse(favs); 
+    }
+  }
+
+
+  guardarFav(favo, item){
+    localStorage.setItem(item, JSON.stringify(favo));
+  }
+
+  Fav(){
+    const id = this.state.data.id;
+    const tipo = this.props.tipo;
+    let item 
+
+ if (tipo=="tv"){
+  item= "seriesFavoritas"
+ } else{
+  item=  "peliculasFavoritas"
+ }
+  let favs = this.Favoritos(item);
+
+    
+    if (this.state.fav === false) {
+      favs.push(id);
+      this.guardarFav(favs,item);
+      this.setState({ fav: true });
+    } else {
+      let filtrados = favs.filter(favor => favor !== id);
+      this.guardarFav(filtrados, item);
+      this.setState({ fav: false });
+    }
+  }
+
+componentDidMount(){
+  const id = this.state.data.id;
+  const tipo = this.props.tipo;
+  let item 
+
+ if (tipo=="tv"){
+  item= "seriesFavoritas"
+ } else{
+  item=  "peliculasFavoritas"
+ }
+  let favs = this.Favoritos(item);
+  let estafav= favs.filter(favorito=> favorito=== id)
+this.setState({ 
+  fav: estafav.length > 0 ? true : false
+});
+  }
+   
     componentDidMount() {
         const { tipo, id } = this.props.match.params;
         const endpoint = `https://api.themoviedb.org/3/${tipo}/${id}?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR`;
@@ -20,6 +78,7 @@ class DetalleP extends Component {
             })
             .catch((error) => console.log(error));
     }
+    
 
     render() {
         let itemsMenu = [
@@ -76,6 +135,9 @@ class DetalleP extends Component {
                         <p>Sinópsis: {descripcion}</p>
                         <p>Género: {genre}</p>
                     </div>
+                        <button className="fav" onClick={() => this.Fav()}>
+                    {this.state.fav ? "Eliminar de favoritos" : "Agregar a favoritos"}
+                    </button>
 
                 </article>
 
