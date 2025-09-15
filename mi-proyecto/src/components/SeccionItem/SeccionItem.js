@@ -9,8 +9,64 @@ class SeccionItem extends Component {
       data: props.data,
       verMas: false,
       textoBoton: "ver descripcion",
-      clase: "noMostrar"
+      clase: "noMostrar", 
+      fav: false
     };
+  }
+
+  Favoritos(item){
+    let favs = localStorage.getItem(item);
+    if (favs === null) {
+      return []; 
+    } else {
+      return JSON.parse(favs); 
+    }
+  }
+
+
+  guardarFav(favo, item){
+    localStorage.setItem(item, JSON.stringify(favo));
+  }
+
+  Fav(){
+    const id = this.state.data.id;
+    const tipo = this.props.tipo;
+    let item 
+
+ if (tipo=="tv"){
+  item= "seriesFavoritas"
+ } else{
+  item=  "peliculasFavoritas"
+ }
+  let favs = this.Favoritos(item);
+
+    
+    if (this.state.fav === false) {
+      favs.push(id);
+      this.guardarFav(favs,item);
+      this.setState({ fav: true });
+    } else {
+      let filtrados = favs.filter(favor => favor !== id);
+      this.guardarFav(filtrados, item);
+      this.setState({ fav: false });
+    }
+  }
+
+  componentDidMount(){
+  const id = this.state.data.id;
+  const tipo = this.props.tipo;
+  let item 
+
+ if (tipo=="tv"){
+  item= "seriesFavoritas"
+ } else{
+  item=  "peliculasFavoritas"
+ }
+  let favs = this.Favoritos(item);
+  let estafav= favs.filter(favorito=> favorito=== id)
+this.setState({ 
+  fav: estafav.length > 0 ? true : false
+});
   }
 
   boton(){
@@ -24,21 +80,20 @@ class SeccionItem extends Component {
   render(){
     const datos = this.state.data;
 
-    // titulo (movie = title, serie = name)
+   
     const titulo = this.props.tipo === "tv"
       ? (datos.name ? datos.name : "(Sin título)")
       : (datos.title ? datos.title : "(Sin título)");
 
-    // imagen
     let poster = "/assets/img/placeholder-poster.svg";
     if (datos.poster_path) {
       poster = "https://image.tmdb.org/t/p/w342" + datos.poster_path;
     }
 
-    // descripcion
+    
     const descripcion = datos.overview ? datos.overview : "Sin descripción disponible.";
 
-    // link a detalle
+
     
     const detalle = `/detalle/${this.props.tipo}/${datos.id}`;
     
@@ -55,6 +110,10 @@ class SeccionItem extends Component {
           </button>
           <Link to={detalle}>Ir a detalle</Link>
         </div>
+        <button className="fav" onClick={() => this.Fav()}>
+    {this.state.fav ? "Eliminar de favoritos" : "Agregar a favoritos"}
+        </button>
+
       </article>
     );
   }
