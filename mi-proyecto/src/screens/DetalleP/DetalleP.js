@@ -118,8 +118,7 @@ this.setState({
             ? datos.genres.map((g) => g.name).join(", ")
             : "Sin género disponible.";
 
-
-
+            
 
         return (
 
