@@ -14,8 +14,8 @@ class SeccionItem extends Component {
     };
   }
 
-  Favoritos(){
-    let favs = localStorage.getItem("favoritos");
+  Favoritos(item){
+    let favs = localStorage.getItem(item);
     if (favs === null) {
       return []; 
     } else {
@@ -24,40 +24,49 @@ class SeccionItem extends Component {
   }
 
 
-  guardarFav(favo){
-    localStorage.setItem("favoritos", JSON.stringify(favo));
+  guardarFav(favo, item){
+    localStorage.setItem(item, JSON.stringify(favo));
   }
 
   Fav(){
     const id = this.state.data.id;
     const tipo = this.props.tipo;
-    const datos= this.state.data;
+    let item 
 
-    const item = {
-      id: id,
-      tipo: tipo,
-      titulo: this.props.tipo === "tv"? (datos.name ? datos.name : "(Sin título)"): (datos.title ? datos.title : "(Sin título)"),
-      poster_path: datos.poster_path,
-    };
+ if (tipo=="tv"){
+  item= "seriesFavoritas"
+ } else{
+  item=  "peliculasFavoritas"
+ }
+  let favs = this.Favoritos(item);
 
-    let favs = this.Favoritos();
-
-    let existe = false;
-    for (let i = 0; i < favs.length; i++) {
-      if (favs[i].id === id && favs[i].tipo === tipo) {
-        existe = true;
-      }
-    }
-
-    if (existe === false) {
-      favs.push(item);
-      this.guardarFav(favs);
+    
+    if (this.state.fav === false) {
+      favs.push(id);
+      this.guardarFav(favs,item);
       this.setState({ fav: true });
     } else {
-      let filtrados = favs.filter(favor => !(favor.id === id && favor.tipo === tipo));
-      this.guardarFav(filtrados);
-      this.setState({ esFav: false });
+      let filtrados = favs.filter(favor => favor !== id);
+      this.guardarFav(filtrados, item);
+      this.setState({ fav: false });
     }
+  }
+
+  componentDidMount(){
+  const id = this.state.data.id;
+  const tipo = this.props.tipo;
+  let item 
+
+ if (tipo=="tv"){
+  item= "seriesFavoritas"
+ } else{
+  item=  "peliculasFavoritas"
+ }
+  let favs = this.Favoritos(item);
+  let estafav= favs.filter(favorito=> favorito=== id)
+this.setState({ 
+  fav: estafav.length > 0 ? true : false
+});
   }
 
   boton(){
@@ -102,7 +111,7 @@ class SeccionItem extends Component {
           <Link to={detalle}>Ir a detalle</Link>
         </div>
         <button className="fav" onClick={() => this.Fav()}>
-    {this.state.Fav ? "Eliminar de favoritos" : "Agregar a favoritos"}
+    {this.state.fav ? "Eliminar de favoritos" : "Agregar a favoritos"}
         </button>
 
       </article>
