@@ -28,7 +28,7 @@ class DetalleP extends Component {
 
   Fav(){
     const id = this.state.data.id;
-    const tipo = this.props.tipo;
+    const tipo = this.props.match.params.tipo;
     let item 
 
  if (tipo=="tv"){
@@ -51,33 +51,35 @@ class DetalleP extends Component {
   }
 
 componentDidMount(){
-  const id = this.state.data.id;
-  const tipo = this.props.tipo;
-  let item 
-
- if (tipo=="tv"){
-  item= "seriesFavoritas"
- } else{
-  item=  "peliculasFavoritas"
- }
-  let favs = this.Favoritos(item);
-  let estafav= favs.filter(favorito=> favorito=== id)
-this.setState({ 
-  fav: estafav.length > 0 ? true : false
-});
-  }
-   
-    componentDidMount() {
-        const { tipo, id } = this.props.match.params;
+     const { tipo, id } = this.props.match.params;
         const endpoint = `https://api.themoviedb.org/3/${tipo}/${id}?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR`;
 
         fetch(endpoint)
             .then((res) => res.json())
             .then((data) => {
                 this.setState({ data: data, cargando: false });
+                  const i = this.state.data.id;
+  const t = this.props.tipo;
+  let item 
+
+ if (t=="tv"){
+  item= "seriesFavoritas"
+ } else{
+  item=  "peliculasFavoritas"
+ }
+  let favs = this.Favoritos(item);
+  let estafav= favs.filter(favorito=> favorito=== i)
+this.setState({ 
+  fav: estafav.length > 0 ? true : false
+});
+
             })
             .catch((error) => console.log(error));
-    }
+
+
+  }
+   
+
     
 
     render() {
@@ -98,18 +100,18 @@ this.setState({
         const datos = this.state.data;
         const tipo = this.props.match.params.tipo;
 
-        // titulo (movie = title, serie = name)
+       
         const titulo = tipo === "tv"
             ? (datos.name ? datos.name : "(Sin título)")
             : (datos.title ? datos.title : "(Sin título)");
 
-        // imagen
+       
         let poster = "/assets/img/placeholder-poster.svg";
         if (datos.poster_path) {
             poster = "https://image.tmdb.org/t/p/w342" + datos.poster_path;
         }
 
-        // descripcion
+       
         const descripcion = datos.overview ? datos.overview : "Sin descripción disponible.";
         let estreno = tipo === "tv" ? (datos.first_air_date ? datos.first_air_date : "Sin fecha de estreno disponible.") : (datos.release_date ? datos.release_date : "Sin fecha de estreno disponible.");
         let calificacion = datos.vote_average ? datos.vote_average : "Sin calificación disponible.";
