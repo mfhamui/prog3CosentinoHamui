@@ -71,7 +71,8 @@ class Resultados extends Component {
       <React.Fragment>
         <Menu itemsMenu={itemsMenu} />
         <div>
-          <h1>Resultados de búsqueda: {query}</h1>
+          <h1>Resultados de búsqueda de: {query} </h1>
+          <h2>Tipo: {tipo === "tv" ? "Series" : "Peliculas"}</h2>
 
           {mensajeCarga}
           {mensajeError}
