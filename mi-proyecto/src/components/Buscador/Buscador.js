@@ -4,16 +4,25 @@ import { withRouter } from "react-router-dom";
 class Buscador extends Component {
   constructor(props) {
     super(props);
-    this.state = { query: "" };
+    this.state = {
+      query: "",
+      tipo: "tv"
+    };
   }
 
   controlarCambios(event) {
     this.setState({ query: event.target.value });
   }
+  controlarTipo(event) {
+    this.setState({ tipo: event.target.value });
+  }
+
 
   evitarSubmit(event) {
     event.preventDefault();
-    this.props.history.push("/resultados?search=" + this.state.query);
+    const query = this.state.query;
+    const tipo = this.state.tipo;
+    this.props.history.push(`/resultados/${tipo}/${query}`);
   }
 
   render() {

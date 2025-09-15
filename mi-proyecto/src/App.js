@@ -12,11 +12,11 @@ function App() {
   return (
  <Switch>
       {/* Ruta raíz */}
-      <Route path="/" exact={true} component={Home} />
-      <Route path="/detalle/:tipo/:id" component={DetalleP} />
-      <Route path="/resultados" component={Resultados}/> 
-      <Route path="/peliculas/:categoria" component={Peliculas} />
-      <Route path="/series/:categoria" component={Series} /> 
+      <Route path="/" exact={true} component={Home} /> 
+      <Route path="/detalle/:tipo/:id" component={DetalleP} /> 
+      <Route path="/resultados/:tipo/:query" component={Resultados} /> 
+      <Route path="/peliculas/:categoria" component={Peliculas} /> 
+      <Route path="/series/:categoria" component={Series} />
       <Route component={NotFound} />
     </Switch>
   );
