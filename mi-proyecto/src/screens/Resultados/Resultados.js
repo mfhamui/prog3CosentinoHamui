@@ -29,7 +29,7 @@ class Resultados extends Component {
           })
         } else {
           this.setState({
-            resultados: [],
+            resultadosS: [],
             cargando: false,
             error: `No se encontraron resultados para ${query}`
           })
@@ -58,7 +58,7 @@ class Resultados extends Component {
         }
       })
       .catch(() => this.setState({
-        resultados: [],
+        resultadosP: [],
         cargando: false,
         error: "Ocurrió un error"
       }));
@@ -99,7 +99,7 @@ class Resultados extends Component {
                 />
               ))}
             </section>) :
-            (<p>No hay resultados para series</p>)}
+            (<p>No hay resultados para {query} </p>)}
 
           <div className="info-box">
             <h2>Peliculas</h2>
@@ -115,7 +115,7 @@ class Resultados extends Component {
                 />
               ))}
             </section>) :
-            (<p>No hay resultados para peliculas</p>)}
+            (<p>No hay resultados para {query}</p>)}
         </div>
 
       </React.Fragment>
