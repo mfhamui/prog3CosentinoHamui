@@ -59,8 +59,7 @@ class DetalleP extends Component {
             ? datos.genres.map((g) => g.name).join(", ")
             : "Sin género disponible.";
 
-
-
+            
 
         return (
 
