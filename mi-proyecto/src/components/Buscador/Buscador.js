@@ -35,14 +35,6 @@ class Buscador extends Component {
           value={this.state.query}
           onChange={(event) => this.controlarCambios(event)}
         />
-        <label>
-          Elige:
-          <select value={this.state.tipo} onChange={(event) => this.controlarTipo(event)} >
-            <option value="movie">Películas</option>
-            <option value="tv">Series</option>
-          </select>
-        </label>
-
 
         <button type="submit" className="btn-sm btn-success">Buscar</button>
       </form>

@@ -5,39 +5,60 @@ class Resultados extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      resultados: [],
+      resultadosP: [],
+      resultadosS: [],
       cargando: false,
       error: ""
     }
   }
   componentDidMount() {
 
-    const { query, tipo } = this.props.match.params;
-    this.buscar(query, tipo);
+    const { query } = this.props.match.params;
+    this.buscar(query);
   }
-  buscar = (query, tipo) => {
-    const url = `https://api.themoviedb.org/3/search/${tipo}?api_key=6702edd122b3200dc3c322dcd7975956&language=es-ES&query=${query}`;
-    this.setState({ cargando: true, resultados: [], error: "" });
-
-    fetch(url)
+  buscar = (query) => {
+    this.setState({ cargando: true, error: "" });
+    //series
+    fetch(`https://api.themoviedb.org/3/search/tv?api_key=6702edd122b3200dc3c322dcd7975956&language=es-ES&query=${query}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.results) {
           this.setState({
-            resultados: data.results,
+            resultadosS: data.results,
             cargando: false
           })
         } else {
           this.setState({
-            resultados: [],
+            resultadosS: [],
             cargando: false,
             error: `No se encontraron resultados para ${query}`
           })
         }
-      }
-      )
+      })
       .catch(() => this.setState({
-        resultados: [],
+        resultadosS: [],
+        cargando: false,
+        error: "Ocurrió un error"
+      }));
+    //peliculas
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=6702edd122b3200dc3c322dcd7975956&language=es-ES&query=${query}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.results) {
+          this.setState({
+            resultadosP: data.results,
+            cargando: false
+          })
+        } else {
+          this.setState({
+            resultadosP: [],
+            cargando: false,
+            error: `No se encontraron resultados para ${query}`
+          })
+        }
+      })
+      .catch(() => this.setState({
+        resultadosP: [],
         cargando: false,
         error: "Ocurrió un error"
       }));
@@ -45,17 +66,9 @@ class Resultados extends Component {
   }
 
   render() {
-    const { resultados, cargando, error } = this.state;
-    let mensajeCarga;
-    let mensajeError;
+    const { resultadosP, resultadosS } = this.state;
+    const { query } = this.props.match.params;
 
-    if (cargando) {
-      mensajeCarga = <p>Cargando...</p>;
-    }
-
-    if (error) {
-      mensajeError = <p>{error}</p>;
-    }
     let itemsMenu = [
       { ruta: "/", nombre: "Home" },
       { ruta: "/peliculas/popular", nombre: "Películas Populares" },
@@ -66,32 +79,45 @@ class Resultados extends Component {
 
     ];
 
-
-    const { query, tipo } = this.props.match.params;
-
-
     return (
 
       <React.Fragment>
         <Menu itemsMenu={itemsMenu} />
         <div>
           <h1>Resultados de búsqueda de: {query} </h1>
-          <h2>Tipo: {tipo === "tv" ? "Series" : "Peliculas"}</h2>
+          <div className="info-box">
+            <h2>Series</h2>
+          </div>
+          {resultadosS.length > 0 ?
+            (<section className="cards-grid">
+              {resultadosS.map((item) => (
+                <SeccionItem
+                  key={item.id}
+                  data={item}
+                  tipo="tv"
+                  claseExtra="seis"
+                />
+              ))}
+            </section>) :
+            (<p>No hay resultados para {query} </p>)}
 
-          {mensajeCarga}
-          {mensajeError}
-
-          <section className="cards-grid">
-            {resultados.map((item) => (
-              <SeccionItem
-                key={item.id}
-                data={item}
-                tipo={tipo}
-                claseExtra="seis"
-              />
-            ))}
-          </section>
+          <div className="info-box">
+            <h2>Peliculas</h2>
+          </div>
+          {resultadosP.length > 0 ?
+            (<section className="cards-grid">
+              {resultadosP.map((item) => (
+                <SeccionItem
+                  key={item.id}
+                  data={item}
+                  tipo="movie"
+                  claseExtra="seis"
+                />
+              ))}
+            </section>) :
+            (<p>No hay resultados para {query}</p>)}
         </div>
+
       </React.Fragment>
 
     );
