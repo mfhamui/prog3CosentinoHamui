@@ -59,19 +59,19 @@ componentDidMount(){
             .then((data) => {
                 this.setState({ data: data, cargando: false });
                   const i = this.state.data.id;
-  const t = this.props.tipo;
-  let item 
+                    const t = this.props.tipo;
+                    let item 
 
- if (t=="tv"){
-  item= "seriesFavoritas"
- } else{
-  item=  "peliculasFavoritas"
- }
-  let favs = this.Favoritos(item);
-  let estafav= favs.filter(favorito=> favorito=== i)
-this.setState({ 
-  fav: estafav.length > 0 ? true : false
-});
+                    if (t=="tv"){
+                    item= "seriesFavoritas"
+                    } else{
+                    item=  "peliculasFavoritas"
+                    }
+                    let favs = this.Favoritos(item);
+                    let estafav= favs.filter(favorito=> favorito=== i)
+                    this.setState({ 
+                    fav: estafav.length > 0 ? true : false
+                    });
 
             })
             .catch((error) => console.log(error));
