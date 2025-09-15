@@ -45,7 +45,7 @@
 }
 
 /* Responsive del título si hace falta */
-@media (max-width: 600px){
+@media (max-width: 760px){
   .info-box { flex-direction: column; align-items: flex-start; }
   .info-box h2 { font-size: 22px; }
 }

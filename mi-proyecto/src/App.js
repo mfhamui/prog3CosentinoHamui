@@ -12,7 +12,6 @@ import Favoritos from "./screens/Favoritos/Favoritos";
 function App() {
   return (
  <Switch>
-      {/* Ruta raíz */}
       <Route path="/" exact={true} component={Home} /> 
       <Route path="/detalle/:tipo/:id" component={DetalleP} /> 
       <Route path="/resultados/:query" component={Resultados} /> 

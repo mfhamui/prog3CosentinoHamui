@@ -1,4 +1,4 @@
-/* Barra de navegación */
+
 .titulo {
   width: 100%;
   text-align: center;
@@ -10,19 +10,19 @@
 }
 .nav {
   width: 100%;
-  background-color: #1e3a8a;   /* azul oscuro */
+  background-color: #1e3a8a;   
   padding: 16px;
-  margin-bottom: 24px;         /* separa del contenido */
+  margin-bottom: 24px;         
   display: flex;
   align-items: center;
 }
 
-/* Logo */
+
 .user {
   list-style: none;
   margin: 0;
   padding: 0;
-  margin-right: 20px;          /* separa el logo del menú */
+  margin-right: 20px;          
 }
 .user img {
   width: 56px;
@@ -38,14 +38,13 @@
 }
 
 
-/* Menú de enlaces */
+
 .menu {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  flex: 1;                     /* ocupa todo el espacio posible */
-  justify-content: center;     /* centra los items en el medio */
+   justify-content: center;    
 }
 .menu li {
   margin: 0 16px;
@@ -57,13 +56,12 @@
   font-weight: 500;
 }
 
-/* Buscador */
 .nav form {
-  margin-left: auto;           /* empuja el buscador a la derecha */
+  margin-left: auto;           
   display: flex;
   align-items: center;
 }
-.nav input[type="text"] {
+.nav input {
   padding: 8px 10px;
   border: 1px solid #cbd5e1;
   border-radius: 6px;
@@ -78,13 +76,60 @@
   font-weight: 600;
 }
 
-/* Responsive: en pantallas chicas apila todo */
 @media (max-width: 760px){
+ 
   .nav {
+    padding: 12px;
+    margin-bottom: 16px;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;  }
+
+
+  .user {
+    
+display: none;
   }
-  .user { margin: 0 0 12px 0; }
-  .menu { justify-content: center; margin-bottom: 12px; }
-  .nav form { margin-left: 0; }
+
+
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;   
+    margin: 0 0 10px 0;
+  }
+  .menu li {
+    margin: 6px 0;
+  }
+  .menu a {
+    display: block;         /* botón a lo ancho */
+    text-align: center;
+    padding: 10px 12px;
+    border-radius: 6px;
+    background-color: #2a46a8;    /* tono del nav, simple */
+   
+
+    }
+
+ 
+  .nav form {
+    width: 100%;
+    display: flex;
+    align-self: center;
+  }
+  
+  .nav input {
+    width: 100%;
+    display: block;
+    border-radius: 6px;
+  }
+  .nav button {
+    width: 20%;
+    display: block;
+    padding: 10px 12px;
+  
+  }
 }
+
+
+
