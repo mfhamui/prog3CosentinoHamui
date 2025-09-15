@@ -7,6 +7,7 @@ import Peliculas from "./screens/Peliculas/Peliculas";
 import Series from "./screens/Series/Series";
 import NotFound from "./screens/Notfound/Notfound";
 import DetalleP from "./screens/DetalleP/DetalleP";
+import Favoritos from "./screens/Favoritos/Favoritos";
 
 function App() {
   return (
@@ -14,9 +15,10 @@ function App() {
       {/* Ruta raíz */}
       <Route path="/" exact={true} component={Home} /> 
       <Route path="/detalle/:tipo/:id" component={DetalleP} /> 
-      <Route path="/resultados/:tipo/:query" component={Resultados} /> 
+      <Route path="/resultados/:query" component={Resultados} /> 
       <Route path="/peliculas/:categoria" component={Peliculas} /> 
       <Route path="/series/:categoria" component={Series} />
+      <Route path="/favoritos" component={Favoritos} />
       <Route component={NotFound} />
     </Switch>
   );
