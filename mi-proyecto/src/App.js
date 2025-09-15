@@ -14,7 +14,7 @@ function App() {
       {/* Ruta raíz */}
       <Route path="/" exact={true} component={Home} /> 
       <Route path="/detalle/:tipo/:id" component={DetalleP} /> 
-      <Route path="/resultados/:tipo/:query" component={Resultados} /> 
+      <Route path="/resultados/:query" component={Resultados} /> 
       <Route path="/peliculas/:categoria" component={Peliculas} /> 
       <Route path="/series/:categoria" component={Series} />
       <Route component={NotFound} />
