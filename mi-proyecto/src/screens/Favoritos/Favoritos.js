@@ -7,9 +7,7 @@ class Favoritos extends Component {
         super(props);
         this.state = {
             favoritosP: [],
-            favoritosS: [],
-            cargando: false,
-            error: ""
+            favoritosS: []
         }
     }
     componentDidMount() {
