@@ -57,13 +57,7 @@ class Series extends Component {
     );
   }
 
-  componentDidMount(){
-    const categoria = this.props.match.params.categoria;
-    fetch("https://api.themoviedb.org/3/tv/" + categoria + "?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=1")
-      .then((response) => response.json())
-      .then((data) => this.setState({ datos: data.results }))
-      .catch((error) => console.log(error));
-  }
+
 
   
   componentDidMount() {
