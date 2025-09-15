@@ -65,23 +65,30 @@ class Series extends Component {
       .catch((error) => console.log(error));
   }
 
-  componentDidUpdate(prevProps, prevState){
-    if (prevState.contador !== this.state.contador){
-      const categoria = this.props.match.params.categoria;
-      fetch("https://api.themoviedb.org/3/tv/" + categoria + "?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=" + this.state.contador)
-        .then((response) => response.json())
-        .then((data) =>
-          this.setState((prev) => ({
-            datos: prev.datos.concat(data.results)
-          }))
-        )
-        .catch((error) => console.log(error));
-    }
+  
+  componentDidMount() {
+    this.cargarMas();
+
   }
 
+
   cargarMas = () => {
-    this.setState((prev) => ({ contador: prev.contador + 1 }));
-  };
+    const categoria = this.props.match.params.categoria;
+    const url = "https://api.themoviedb.org/3/tv/" + categoria + "?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=" + this.state.contador;
+      
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) =>
+        this.setState({
+          datos: this.state.datos.concat(data.results),
+          contador: this.state.contador + 1
+        })
+      )
+      .catch((error) => console.log(error));
+
+  }
 }
+
+ 
 
 export default Series;

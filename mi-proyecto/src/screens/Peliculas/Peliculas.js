@@ -48,40 +48,13 @@ class Peliculas extends Component {
           </section>
 
           <div className="mas">
-            <button type="button" onClick={this.cargarMas}>
-              Ver más
-            </button>
+            <button type="button" onClick={this.cargarMas}>Ver más</button>
           </div>
         </main>
       </React.Fragment>
     );
   }
 
-  componentDidMount(){
-    const categoria = this.props.match.params.categoria;
-    fetch("https://api.themoviedb.org/3/movie/" + categoria + "?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=1")
-      .then((response) => response.json())
-      .then((data) => this.setState({ datos: data.results }))
-      .catch((error) => console.log(error));
-  }
-
-  componentDidUpdate(prevProps, prevState){
-    if (prevState.contador !== this.state.contador){
-      const categoria = this.props.match.params.categoria;
-      fetch("https://api.themoviedb.org/3/movie/" + categoria + "?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=" + this.state.contador)
-        .then((response) => response.json())
-        .then((data) =>
-          this.setState((prev) => ({
-            datos: prev.datos.concat(data.results)
-          }))
-        )
-        .catch((error) => console.log(error));
-    }
-  }
-
-  cargarMas = () => {
-    this.setState((prev) => ({ contador: prev.contador + 1 }));
-  };
   componentDidMount() {
     this.cargarMas();
 
@@ -89,13 +62,14 @@ class Peliculas extends Component {
 
 
   cargarMas = () => {
-    const url = `https://rickandmortyapi.com/api/character?page=${this.state.contador}`;
-
+    const categoria = this.props.match.params.categoria;
+    const url = "https://api.themoviedb.org/3/movie/" + categoria + "?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=" + this.state.contador;
+      
     fetch(url)
       .then((response) => response.json())
       .then((data) =>
         this.setState({
-          data: this.state.data.concat(data.results),
+          datos: this.state.datos.concat(data.results),
           contador: this.state.contador + 1
         })
       )
