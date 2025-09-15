@@ -24,10 +24,14 @@ class DetalleP extends Component {
     render() {
         let itemsMenu = [
             { ruta: "/", nombre: "Home" },
-            { ruta: "/peliculas", nombre: "Películas" },
-            { ruta: "/series", nombre: "Series" },
+            { ruta: "/peliculas/popular", nombre: "Películas Populares" },
+            { ruta: "/peliculas/now_playing", nombre: "Películas en Cartelera" },
+            { ruta: "/series/popular", nombre: "Series Populares" },
+            { ruta: "/series/on_the_air", nombre: "Series en Emisión" },
             { ruta: "/favoritos", nombre: "Favoritas" },
+
         ];
+
 
         if (this.state.cargando) {
             return <p>Cargando...</p>;
@@ -54,7 +58,7 @@ class DetalleP extends Component {
         const genre = datos.genres && datos.genres.length > 0
             ? datos.genres.map((g) => g.name).join(", ")
             : "Sin género disponible.";
-        
+
 
 
 
@@ -62,14 +66,17 @@ class DetalleP extends Component {
 
             <React.Fragment>
                 <Menu itemsMenu={itemsMenu} />
-                <article className={`home-i ${this.props.claseExtra}`} >
+                <article className={`home-i ${this.props.claseExtra} detalle-container`} >
                     <img src={poster} alt={titulo} />
-                    <h3>{titulo}</h3>
-                    <p>Calificación: {calificacion}</p>
-                    <p>Fecha de estreno: {estreno}</p>
-                    {duracion && <p>Duración: {duracion} minutos</p>}
-                    <p>Sinópsis: {descripcion}</p>
-                    <p>Género: {genre}</p>
+                    <div className="detalle-info">
+                        <h3>{titulo}</h3>
+                        <p>Calificación: {calificacion}</p>
+                        <p>Fecha de estreno: {estreno}</p>
+                        {duracion && <p>Duración: {duracion} minutos</p>}
+                        <p>Sinópsis: {descripcion}</p>
+                        <p>Género: {genre}</p>
+                    </div>
+
                 </article>
 
             </React.Fragment>

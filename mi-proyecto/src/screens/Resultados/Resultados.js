@@ -58,12 +58,16 @@ class Resultados extends Component {
     }
     let itemsMenu = [
       { ruta: "/", nombre: "Home" },
-      { ruta: "/peliculas", nombre: "Películas" },
-      { ruta: "/series", nombre: "Series" },
+      { ruta: "/peliculas/popular", nombre: "Películas Populares" },
+      { ruta: "/peliculas/now_playing", nombre: "Películas en Cartelera" },
+      { ruta: "/series/popular", nombre: "Series Populares" },
+      { ruta: "/series/on_the_air", nombre: "Series en Emisión" },
       { ruta: "/favoritos", nombre: "Favoritas" },
+
     ];
 
-    const { query, tipo } = this.props.match.params; 
+
+    const { query, tipo } = this.props.match.params;
 
 
     return (
@@ -77,13 +81,13 @@ class Resultados extends Component {
           {mensajeCarga}
           {mensajeError}
 
-          <section >
+          <section className="cards-grid">
             {resultados.map((item) => (
-              
               <SeccionItem
                 key={item.id}
                 data={item}
                 tipo={tipo}
+                claseExtra="seis"
               />
             ))}
           </section>

@@ -5,7 +5,7 @@ body {
   background: #0b1022;   /* un poco más oscuro para combinar con nav */
   color: #e8ecff;
 }
-img { max-width: 100%; display: block; }
+img { max-width: 100%; display: block;  border-radius: 12px;}
 
 /* Contenedor de Pelis/Series a todo ancho con aire interno */
 .cont {
@@ -49,6 +49,43 @@ img { max-width: 100%; display: block; }
   cursor: pointer;
 }
 
+.detalle-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;       /* centra verticalmente la imagen con el texto */
+  justify-content: center;   /* centra horizontalmente */
+  gap: 30px;
+  max-width: 800px;          /* achica el bloque blanco */
+  margin: 40px auto;         /* centra en la página */
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.detalle-container img {
+  max-width: 250px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.detalle-info {
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .detalle-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+    max-width: 95%; /* ocupa casi todo el ancho en celular */
+  }
+
+  .detalle-info {
+    margin-top: 15px;
+  }
+}
 /* Breakpoints mínimos */
 @media (max-width: 992px){
   .cont h1 { font-size: 22px; }
