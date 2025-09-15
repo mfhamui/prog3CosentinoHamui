@@ -82,6 +82,26 @@ class Peliculas extends Component {
   cargarMas = () => {
     this.setState((prev) => ({ contador: prev.contador + 1 }));
   };
+  componentDidMount() {
+    this.cargarMas();
+
+  }
+
+
+  cargarMas = () => {
+    const url = `https://rickandmortyapi.com/api/character?page=${this.state.contador}`;
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) =>
+        this.setState({
+          data: this.state.data.concat(data.results),
+          contador: this.state.contador + 1
+        })
+      )
+      .catch((error) => console.log(error));
+
+  }
 }
 
 export default Peliculas;
