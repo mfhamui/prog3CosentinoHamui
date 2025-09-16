@@ -51,7 +51,8 @@ class DetalleP extends Component {
   }
 
 componentDidMount(){
-     const { tipo, id } = this.props.match.params;
+     const tipo = this.props.match.params.tipo;
+     const id =this.props.match.params.id;
         const endpoint = `https://api.themoviedb.org/3/${tipo}/${id}?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR`;
 
         fetch(endpoint)
