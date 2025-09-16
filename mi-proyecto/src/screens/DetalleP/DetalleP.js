@@ -7,7 +7,7 @@ class DetalleP extends Component {
         this.state = {
             data: null,
             cargando: true,
-             fav: false
+            fav: false
         };
     }
 
@@ -58,23 +58,25 @@ componentDidMount(){
         fetch(endpoint)
             .then((res) => res.json())
             .then((data) => {
-                this.setState({ data: data, cargando: false });
-                  const i = this.state.data.id;
-                    const t = this.props.tipo;
-                    let item 
+                  let item;
+      if (tipo === "tv") {
+        item = "seriesFavoritas";
+      } else {
+        item = "peliculasFavoritas";
+      }
 
-                    if (t=="tv"){
-                    item= "seriesFavoritas"
-                    } else{
-                    item=  "peliculasFavoritas"
-                    }
-                    let favs = this.Favoritos(item);
-                    let estafav= favs.filter(favorito=> favorito=== i)
-                    this.setState({ 
-                    fav: estafav.length > 0 ? true : false
-                    });
+      
+      let favs = this.Favoritos(item);
 
-            })
+      
+      let estafav = favs.filter(favorito => favorito === data.id);
+
+      this.setState({ 
+        data: data, 
+        cargando: false, 
+        fav: estafav.length > 0 ? true : false 
+      });
+    })
             .catch((error) => console.log(error));
 
 
