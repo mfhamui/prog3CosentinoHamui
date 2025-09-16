@@ -13,7 +13,7 @@ class Resultados extends Component {
   }
   componentDidMount() {
 
-    const { query } = this.props.match.params;
+    const query = this.props.match.params.query;
     this.buscar(query);
   }
   buscar = (query) => {
@@ -66,8 +66,9 @@ class Resultados extends Component {
   }
 
   render() {
-    const { resultadosP, resultadosS } = this.state;
-    const { query } = this.props.match.params;
+    const resultadosP = this.state.resultadosP;
+    const resultadosS = this.state.resultadosS;
+    const query = this.props.match.params.query;
 
     let itemsMenu = [
       { ruta: "/", nombre: "Home" },
