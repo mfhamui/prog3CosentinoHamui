@@ -133,7 +133,7 @@ class DetalleP extends Component {
                 <article className={`home-i ${this.props.claseExtra} detalle-container`} >
                     <img src={poster} alt={titulo} />
                     <div className="detalle-info">
-                        <h3>{titulo}</h3>
+                        <h3 className="titulodetalle">{titulo}</h3>
                         <p>Calificación: {calificacion}</p>
                         <p>Fecha de estreno: {estreno}</p>
                         {duracion && <p>Duración: {duracion} minutos</p>}
