@@ -8,7 +8,7 @@ class DetalleP extends Component {
             data: null,
             cargando: true,
             fav: false
-            fav: false
+            
         };
     }
 
