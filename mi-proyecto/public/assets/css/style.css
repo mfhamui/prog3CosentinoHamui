@@ -52,11 +52,11 @@ img { max-width: 100%; display: block;  border-radius: 12px;}
 .detalle-container {
   display: flex;
   flex-direction: row;
-  align-items: center;       /* centra verticalmente la imagen con el texto */
-  justify-content: center;   /* centra horizontalmente */
+  align-items: center;       
+  justify-content: center;   
   gap: 30px;
-  max-width: 800px;          /* achica el bloque blanco */
-  margin: 40px auto;         /* centra en la página */
+  max-width: 800px;          
+ margin: 40px auto;         
   padding: 20px;
   background: white;
   border-radius: 12px;
@@ -70,27 +70,23 @@ img { max-width: 100%; display: block;  border-radius: 12px;}
   border-radius: 8px;
 }
 
-.detalle-info {
-  flex: 1;
+.titulodetalle{
+  color: #0b1022;
+  
 }
+
 
 @media (max-width: 768px) {
   .detalle-container {
     flex-direction: column;
     text-align: center;
     padding: 15px;
-    max-width: 95%; /* ocupa casi todo el ancho en celular */
+    max-width: 95%; 
   }
+  .cont { padding: 16px; }
+  .cont h1 { font-size: 18px; padding: 10px 12px; }
 
   .detalle-info {
     margin-top: 15px;
   }
-}
-/* Breakpoints mínimos */
-@media (max-width: 992px){
-  .cont h1 { font-size: 22px; }
-}
-@media (max-width: 600px){
-  .cont { padding: 16px; }
-  .cont h1 { font-size: 18px; padding: 10px 12px; }
 }

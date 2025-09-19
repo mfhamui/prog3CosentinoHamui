@@ -8,6 +8,7 @@ class DetalleP extends Component {
             data: null,
             cargando: true,
             fav: false
+            
         };
     }
 
@@ -58,23 +59,25 @@ class DetalleP extends Component {
         fetch(endpoint)
             .then((res) => res.json())
             .then((data) => {
-                this.setState({ data: data, cargando: false });
-                const i = this.state.data.id;
-                const t = this.props.tipo;
-                let item
+                  let item;
+      if (tipo === "tv") {
+        item = "seriesFavoritas";
+      } else {
+        item = "peliculasFavoritas";
+      }
 
-                if (t === "tv") {
-                    item = "seriesFavoritas"
-                } else {
-                    item = "peliculasFavoritas"
-                }
-                let favs = this.Favoritos(item);
-                let estafav = favs.filter(favorito => favorito === i)
-                this.setState({
-                    fav: estafav.length > 0 ? true : false
-                });
+      
+      let favs = this.Favoritos(item);
 
-            })
+      
+      let estafav = favs.filter(favorito => favorito === data.id);
+
+      this.setState({ 
+        data: data, 
+        cargando: false, 
+        fav: estafav.length > 0 ? true : false 
+      });
+    })
             .catch((error) => console.log(error));
 
 
@@ -130,15 +133,15 @@ class DetalleP extends Component {
                 <article className={`home-i ${this.props.claseExtra} detalle-container`} >
                     <img src={poster} alt={titulo} />
                     <div className="detalle-info">
-                        <h3>{titulo}</h3>
+                        <h3 className="titulodetalle">{titulo}</h3>
                         <p>Calificación: {calificacion}</p>
                         <p>Fecha de estreno: {estreno}</p>
                         {duracion && <p>Duración: {duracion} minutos</p>}
                         <p>Sinópsis: {descripcion}</p>
                         <p>Género: {genre}</p>
                     </div>
-                    <button className="fav" onClick={() => this.Fav()}>
-                        {this.state.fav ? "Eliminar de favoritos" : "Agregar a favoritos"}
+                        <button className="fav" onClick={() => this.Fav()}>
+                    {this.state.fav ? "Eliminar de favoritos" : "Agregar a favoritos"}
                     </button>
 
                 </article>
