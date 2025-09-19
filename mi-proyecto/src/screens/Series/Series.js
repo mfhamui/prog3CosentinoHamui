@@ -8,63 +8,14 @@ class Series extends Component {
     super(props);
     this.state = {
       datos: [],
-      contador: 1
+      contador: 1,
+      filtro: ""
     };
   }
-
-  render(){
-    const categoria = this.props.match.params.categoria; 
-    const titulo = categoria === "on_the_air" ? "Series en emisión" : "Series populares";
-
-    return (
-      <React.Fragment>
-        <Menu
-          itemsMenu={[
-          { ruta: "/",            nombre: "Home" },
-          { ruta: "/peliculas/popular", nombre: "Películas Populares" },
-          { ruta: "/peliculas/now_playing", nombre: "Películas en Cartelera" },
-          { ruta: "/series/popular", nombre: "Series Populares" },
-          { ruta: "/series/on_the_air", nombre: "Series en Emisión" },
-          { ruta: "/favoritos",   nombre: "Favoritas" },
-          ]}
-        />
-
-        <main className="cont">
-          <h1>{titulo}</h1>
-
-          <section className="info">
-            {this.state.datos.length === 0 ? (
-              <p>Cargando…</p>
-            ) : (
-              this.state.datos.map((item) => (
-                <SeccionItem
-                  key={item.id}
-                  data={item}
-                  tipo="tv"
-                  claseExtra="seis"
-                />
-              ))
-            )}
-          </section>
-
-          <div className="mas">
-            <button type="button" onClick={this.cargarMas}>
-              Ver más
-            </button>
-          </div>
-        </main>
-      </React.Fragment>
-    );
-  }
-
-
-
-  
   componentDidMount() {
     this.cargarMas();
 
   }
-
 
   cargarMas = () => {
     const categoria = this.props.match.params.categoria;
@@ -81,8 +32,66 @@ class Series extends Component {
       .catch((error) => console.log(error));
 
   }
-}
 
- 
+  evitarSubmit(event) {
+    event.preventDefault();
+  }
+  
+  controlarCambios = (event) => {
+    this.setState({ filtro: event.target.value })
+  }
+
+  render(){
+    const categoria = this.props.match.params.categoria; 
+    const titulo = categoria === "on_the_air" ? "Series en emisión" : "Series populares";
+    const seriesFiltradas = this.state.datos.filter(serie => serie.name.toLowerCase().includes(this.state.filtro.toLowerCase()))
+
+    return (
+      <React.Fragment>
+        <Menu
+          itemsMenu={[
+          { ruta: "/",            nombre: "Home" },
+          { ruta: "/peliculas/popular", nombre: "Películas Populares" },
+          { ruta: "/peliculas/now_playing", nombre: "Películas en Cartelera" },
+          { ruta: "/series/popular", nombre: "Series Populares" },
+          { ruta: "/series/on_the_air", nombre: "Series en Emisión" },
+          { ruta: "/favoritos",   nombre: "Favoritas" },
+          ]}
+        />
+
+        <main className="cont">
+        <form onSubmit={(event) => this.evitarSubmit(event)}>
+            <label>Filtrar contenido por: </label>
+            <input type="text" placeholder="escribir acá..." onChange={(event) => this.controlarCambios(event)} value={this.state.filtro} />
+          </form>
+
+          <h1>{titulo}</h1>
+
+          <section className="info">
+            {this.state.datos.length === 0 ? (
+              <p>Cargando…</p>
+            ) : (
+              seriesFiltradas.map((item) => (
+                <SeccionItem
+                  key={item.id}
+                  data={item}
+                  tipo="tv"
+                  claseExtra={this.props.cant === 6 ? "seis" : "cuatro"}
+                />
+              ))
+            )}
+          </section>
+
+          <div className="mas">
+            <button type="button" onClick={this.cargarMas}>
+              Ver más
+            </button>
+          </div>
+        </main>
+      </React.Fragment>
+    );
+  }
+
+}
 
 export default Series;

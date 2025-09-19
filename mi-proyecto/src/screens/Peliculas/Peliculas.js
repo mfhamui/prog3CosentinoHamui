@@ -4,44 +4,77 @@ import SeccionItem from "../../components/SeccionItem/SeccionItem";
 
 
 class Peliculas extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       datos: [],
-      contador: 1
+      contador: 1,
+      filtro: ""
     };
   }
+  componentDidMount() {
+    this.cargarMas();
 
-  render(){
+  }
+
+  cargarMas = () => {
+    const categoria = this.props.match.params.categoria;
+    const url = "https://api.themoviedb.org/3/movie/" + categoria + "?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=" + this.state.contador;
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) =>
+        this.setState({
+          datos: this.state.datos.concat(data.results),
+          contador: this.state.contador + 1
+        })
+      )
+      .catch((error) => console.log(error));
+  }
+
+  evitarSubmit(event) {
+    event.preventDefault();
+  }
+
+  controlarCambios = (event) => {
+    this.setState({ filtro: event.target.value })
+  }
+
+  render() {
     const categoria = this.props.match.params.categoria; // "popular" | "now_playing"
     const titulo = categoria === "now_playing" ? "Películas en cartelera" : "Películas populares";
-
+    const peliculasFiltradas = this.state.datos.filter(pelicula => pelicula.title.toLowerCase().includes(this.state.filtro.toLowerCase()))
     return (
       <React.Fragment>
         <Menu
           itemsMenu={[
-           { ruta: "/",            nombre: "Home" },
-          { ruta: "/peliculas/popular", nombre: "Películas Populares" },
-          { ruta: "/peliculas/now_playing", nombre: "Películas en Cartelera" },
-          { ruta: "/series/popular", nombre: "Series Populares" },
-          { ruta: "/series/on_the_air", nombre: "Series en Emisión" },
-          { ruta: "/favoritos",   nombre: "Favoritas" },
+            { ruta: "/", nombre: "Home" },
+            { ruta: "/peliculas/popular", nombre: "Películas Populares" },
+            { ruta: "/peliculas/now_playing", nombre: "Películas en Cartelera" },
+            { ruta: "/series/popular", nombre: "Series Populares" },
+            { ruta: "/series/on_the_air", nombre: "Series en Emisión" },
+            { ruta: "/favoritos", nombre: "Favoritas" },
           ]}
         />
 
         <main className="cont">
+          <form onSubmit={(event) => this.evitarSubmit(event)}>
+            <label>Filtrar contenido por: </label>
+            <input type="text" placeholder="escribir acá..." onChange={(event) => this.controlarCambios(event)} value={this.state.filtro} />
+          </form>
+
           <h1>{titulo}</h1>
 
           <section className="info">
             {this.state.datos.length === 0 ? (
               <p>Cargando…</p>
-            ) : (
-              this.state.datos.map((item) => (
+            ) : ( 
+              peliculasFiltradas.map((item) => (
                 <SeccionItem
                   key={item.id}
                   data={item}
                   tipo="movie"
-                  claseExtra="seis"
+                  claseExtra={this.props.cant === 6 ? "seis" : "cuatro"}
                 />
               ))
             )}
@@ -53,28 +86,6 @@ class Peliculas extends Component {
         </main>
       </React.Fragment>
     );
-  }
-
-  componentDidMount() {
-    this.cargarMas();
-
-  }
-
-
-  cargarMas = () => {
-    const categoria = this.props.match.params.categoria;
-    const url = "https://api.themoviedb.org/3/movie/" + categoria + "?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=" + this.state.contador;
-      
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) =>
-        this.setState({
-          datos: this.state.datos.concat(data.results),
-          contador: this.state.contador + 1
-        })
-      )
-      .catch((error) => console.log(error));
-
   }
 }
 
