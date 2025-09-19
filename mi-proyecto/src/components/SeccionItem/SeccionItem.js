@@ -45,7 +45,7 @@ class SeccionItem extends Component {
       this.guardarFav(favs, item);
       this.setState({ fav: true });
     } else {
-      let filtrados = favs.filter(favor => favor !== id);
+      let filtrados = favs.filter(favor => favor.id !== id);
       this.guardarFav(filtrados, item);
       this.setState({ fav: false });
     }
