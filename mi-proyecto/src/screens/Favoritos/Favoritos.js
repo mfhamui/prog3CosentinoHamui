@@ -14,18 +14,21 @@ class Favoritos extends Component {
         this.cargarFavoritos();
     }
     cargarFavoritos() {
-        let favs = localStorage.getItem("favoritos");
-        favs === null ? favs = [] : favs = JSON.parse(favs)
-        let favoritosP = favs.filter(item => item.tipo === "movie");
-        let favoritosS = favs.filter(item => item.tipo === "tv");
+        let peliculas = JSON.parse(localStorage.getItem("peliculasFavoritas"));
+        if (!peliculas) peliculas = []; 
+        
+        let series = JSON.parse(localStorage.getItem("seriesFavoritas"));
+        if (!series) series = [];
+
         this.setState({
-            favoritosP: favoritosP,
-            favoritosS: favoritosS
+            favoritosP: peliculas,
+            favoritosS: series
         })
     }
 
     render() {
-        const { favoritosP, favoritosS } = this.state;
+        const favoritosP  = this.state.favoritosP;
+        const favoritosS = this.state.favoritosS;
 
         let itemsMenu = [
             { ruta: "/", nombre: "Home" },
