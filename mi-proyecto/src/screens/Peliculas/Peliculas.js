@@ -9,7 +9,7 @@ class Peliculas extends Component {
     this.state = {
       datos: [],
       contador: 1,
-      filtro: ""
+     filtro: "" 
     };
   }
   componentDidMount() {
@@ -36,14 +36,30 @@ class Peliculas extends Component {
     event.preventDefault();
   }
 
-  controlarCambios = (event) => {
-    this.setState({ filtro: event.target.value })
+ 
+  controlarCambios(event) {
+    this.setState({ filtro: event.target.value });
+  }
+/* esto de aca abajo es nuevo*/
+  filtrarPeliculas(textoAFiltrar) {
+    return this.state.datos.filter((peli) =>
+      peli.title.toLowerCase().includes(textoAFiltrar)
+    );
   }
 
   render() {
     const categoria = this.props.match.params.categoria; // "popular" | "now_playing"
     const titulo = categoria === "now_playing" ? "Películas en cartelera" : "Películas populares";
+    
+    /* esto de aca abajo es lo viejo, despues es todo igual:
     const peliculasFiltradas = this.state.datos.filter(pelicula => pelicula.title.toLowerCase().includes(this.state.filtro.toLowerCase()))
+    y lo que esta aca abajo es lo nuevo: */
+
+      const peliculasFiltradas =
+      this.state.filtro === ""
+        ? this.state.datos
+        : this.filtrarPeliculas(this.state.filtro.toLowerCase());
+
     return (
       <React.Fragment>
         <Menu
@@ -61,6 +77,7 @@ class Peliculas extends Component {
           <form onSubmit={(event) => this.evitarSubmit(event)}>
             <label>Filtrar contenido por: </label>
             <input type="text" placeholder="escribir acá..." onChange={(event) => this.controlarCambios(event)} value={this.state.filtro} />
+           
           </form>
 
           <h1>{titulo}</h1>
