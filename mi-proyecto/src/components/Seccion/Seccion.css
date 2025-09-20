@@ -1,16 +1,16 @@
-/* Cada bloque del Home ocupa todo el ancho */
+
 .home-section {
   width: 100%;
   margin: 0 0 24px 0;
 }
 
-/* Franja de título de borde a borde (como el nav) */
+
 .info-box {
   width: 100%;
   background-color: #dbeafe;
   border: 1px solid #bfdbfe;
   color: #1e40af;
-  border-radius: 0;        /* sin redondeo para que se vea como franja */
+  border-radius: 0;        
   padding: 14px 20px;
 
   display: flex;
@@ -25,7 +25,7 @@
   line-height: 1.2;
 }
 
-/* Botón/ver-todas básico */
+
 .ver-todas {
   text-decoration: none;
   color: #0b63a8;
@@ -36,7 +36,7 @@
   border-radius: 4px;
 }
 
-/* Fila de cards (Home) — una o más filas según cant */
+
 .cards-grid {
   display: flex;
   flex-wrap: wrap;
@@ -44,7 +44,7 @@
   margin-top: 12px;
 }
 
-/* Responsive del título si hace falta */
+
 @media (max-width: 760px){
   .info-box { flex-direction: column; align-items: flex-start; }
   .info-box h2 { font-size: 22px; }

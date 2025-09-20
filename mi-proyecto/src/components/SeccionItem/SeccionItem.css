@@ -1,6 +1,6 @@
 .noMostrar { display: none; }
 
-/* Card base (misma para Home/Pelis/Series) */
+
 .home-i {
   background: #fff;
   border: 1px solid #e5e7eb;
@@ -12,10 +12,10 @@
   margin-bottom: 16px; 
 }
 
-/* Home: 4 por fila */
+
 .home-i.cuatro { width: 23%; }
 
-/* Home/Screens: 6 por fila (páginas de listado) */
+
 .home-i.seis { width: 15%; }
 
 .home-i img {
@@ -45,7 +45,7 @@
   text-align: center;
 }
 
-/* zona de acciones */
+
 .actions {
   display: flex;
   flex-direction: column;   
@@ -86,6 +86,6 @@
 
 @media (max-width: 760px){
   .home-i.cuatro,
-  .home-i.seis { width: 100%; }  /* 1 por fila */
+  .home-i.seis { width: 100%; }  
 }
 

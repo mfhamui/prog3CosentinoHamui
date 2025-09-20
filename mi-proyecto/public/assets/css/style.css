@@ -2,20 +2,20 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background: #0b1022;   /* un poco más oscuro para combinar con nav */
+  background: #0b1022;   
   color: #e8ecff;
 }
 img { max-width: 100%; display: block;  border-radius: 12px;}
 
-/* Contenedor de Pelis/Series a todo ancho con aire interno */
+/* Contenedor de Pelis/Series  */
 .cont {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 20px;          /* separa del borde */
+  padding: 20px;          
 }
 
-/* Título de Pelis/Series (queda ancho por usar .cont full width) */
+/* Título de Pelis/Series  */
 .cont h1 {
   font-size: 24px;
   margin: 10px 0 12px;
@@ -30,7 +30,7 @@ img { max-width: 100%; display: block;  border-radius: 12px;}
 .info {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; /* reparte .home-i */
+  justify-content: space-between; 
   margin-bottom: 2%;
 }
 

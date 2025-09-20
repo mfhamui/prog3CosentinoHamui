@@ -102,11 +102,11 @@ display: none;
     margin: 6px 0;
   }
   .menu a {
-    display: block;         /* botón a lo ancho */
+    display: block;       
     text-align: center;
     padding: 10px 12px;
     border-radius: 6px;
-    background-color: #2a46a8;    /* tono del nav, simple */
+    background-color: #2a46a8;    
    
 
     }
