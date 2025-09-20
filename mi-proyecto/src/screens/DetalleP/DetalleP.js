@@ -117,13 +117,19 @@ class DetalleP extends Component {
 
 
         const descripcion = datos.overview ? datos.overview : "Sin descripción disponible.";
-        let estreno = tipo === "tv" ? (datos.first_air_date ? datos.first_air_date : "Sin fecha de estreno disponible.") : (datos.release_date ? datos.release_date : "Sin fecha de estreno disponible.");
-        let calificacion = datos.vote_average ? datos.vote_average : "Sin calificación disponible.";
-        let duracion = tipo === "tv" ? ("") : (datos.runtime ? datos.runtime : "Sin duración disponible.");
-        const genre = datos.genres && datos.genres.length > 0
-            ? datos.genres.map((g) => g.name).join(", ")
-            : "Sin género disponible.";
 
+        let estreno = tipo === "tv" 
+        ? (datos.first_air_date ? datos.first_air_date : "Sin fecha de estreno disponible.")
+        : (datos.release_date ? datos.release_date : "Sin fecha de estreno disponible.");
+        
+        let calificacion = datos.vote_average ? datos.vote_average : "Sin calificación disponible.";
+        
+        let duracion = tipo === "tv" ? ("") : (datos.runtime ? datos.runtime : "Sin duración disponible.");
+       
+      let genre = "Sin género disponible.";
+        if (datos.genres && datos.genres.length > 0) {
+        genre = datos.genres.map(g => g.name);   
+    }
 
 
         return (
@@ -136,7 +142,7 @@ class DetalleP extends Component {
                         <h3 className="titulodetalle">{titulo}</h3>
                         <p>Calificación: {calificacion}</p>
                         <p>Fecha de estreno: {estreno}</p>
-                        {duracion && <p>Duración: {duracion} minutos</p>}
+                        {duracion ? <p>Duración: {duracion} minutos</p> : null}
                         <p>Sinópsis: {descripcion}</p>
                         <p>Género: {genre}</p>
                     </div>
