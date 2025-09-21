@@ -52,11 +52,11 @@ class SeccionItem extends Component {
 
 
     if (this.state.fav === false) {
-      favs.push(this.state.data.id)
+      favs.push(this.state.data)
       this.guardarFav(favs, item);
       this.setState({ fav: true });
     } else {
-      let filtrados = favs.filter(favor => favor !== id);
+      let filtrados = favs.filter(favor => favor.id!==id);
       this.guardarFav(filtrados, item);
       this.setState({ fav: false });
     }
@@ -72,7 +72,7 @@ class SeccionItem extends Component {
       item = "peliculasFavoritas"
     }
     let favs = this.Favoritos(item);
-    let estafav = favs.filter(favorito => favorito === id)
+    let estafav = favs.filter(favorito => favorito.id==id)
     this.setState({
       fav: estafav.length > 0 ? true : false
     });

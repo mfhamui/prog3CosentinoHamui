@@ -15,10 +15,10 @@ class Favoritos extends Component {
     }
     cargarFavoritos() {
         let peliculas = JSON.parse(localStorage.getItem("peliculasFavoritas"));
-        if (!peliculas) peliculas = []; 
+        if (!peliculas) {peliculas= [] } 
         
         let series = JSON.parse(localStorage.getItem("seriesFavoritas"));
-        if (!series) series = [];
+        if (!series){ series = [];}
 
         this.setState({
             favoritosP: peliculas,

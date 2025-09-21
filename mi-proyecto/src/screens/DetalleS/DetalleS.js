@@ -36,11 +36,11 @@ class DetalleS extends Component {
 
 
         if (this.state.fav === false) {
-            favs.push(data.id)
+            favs.push(data)
             this.guardarFav(favs, item);
             this.setState({ fav: true });
         } else {
-            let filtrados = favs.filter(favor => favor !== data.id);
+            let filtrados = favs.filter(favor => favor.id!==data.id)
             this.guardarFav(filtrados, item);
             this.setState({ fav: false });
         }
@@ -54,7 +54,7 @@ class DetalleS extends Component {
             .then((res) => res.json())
             .then((data) => {
                 let favs = this.Favoritos("seriesFavoritas");
-                let estafav = favs.filter(favorito => favorito === data.id);
+                let estafav = favs.filter(favorito => favorito.id==data.id);
 
                 this.setState({
                     data: data,
