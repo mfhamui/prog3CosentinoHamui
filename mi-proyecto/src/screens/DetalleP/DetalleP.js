@@ -7,9 +7,7 @@ class DetalleP extends Component {
         this.state = {
             data: [],
             cargando: true,
-            fav: false,
-      
-            
+            fav: false
         };
     }
 
@@ -40,41 +38,35 @@ class DetalleP extends Component {
             this.guardarFav(favs, item);
             this.setState({ fav: true });
         } else {
-            let filtrados = favs.filter(favor => favor!==data.id);
+            let filtrados = favs.filter(favor => favor !== data.id);
             this.guardarFav(filtrados, item);
             this.setState({ fav: false });
         }
     }
 
     componentDidMount() {
-  
-      const id = this.props.match.params.id;
-     const endpoint = "https://api.themoviedb.org/3/movie/" + id + "?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR";
+
+        const id = this.props.match.params.id;
+        const endpoint = "https://api.themoviedb.org/3/movie/" + id + "?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR";
 
         fetch(endpoint)
             .then((res) => res.json())
             .then((data) => {
-            let item = "peliculasFavoritas";
-     
+                let item = "peliculasFavoritas";
 
-      
-      let favs = this.Favoritos(item);
+                let favs = this.Favoritos(item);
 
-      
-      let estafav = favs.filter(favorito => favorito === data.id);
+                let estafav = favs.filter(favorito => favorito === data.id);
 
-      this.setState({ 
-        data: data, 
-        cargando: false, 
-        fav: estafav.length > 0 ? true : false 
-      });
-    })
+                this.setState({
+                    data: data,
+                    cargando: false,
+                    fav: estafav.length > 0 ? true : false
+                });
+            })
             .catch((error) => console.log(error));
 
-
     }
-
-
 
 
     render() {
@@ -88,36 +80,30 @@ class DetalleP extends Component {
 
         ];
 
-         if (this.state.data.length==0){
+        if (this.state.data.length === 0) {
             <p>Cargando...</p>
-         }
-       
-         const datos = this.state.data;
-        let titulo = datos.title 
+        }
 
-  
+        const datos = this.state.data;
+        let titulo = datos.title
 
         let poster = "/assets/img/placeholder-poster.svg";
         if (datos.poster_path) {
             poster = "https://image.tmdb.org/t/p/w342" + datos.poster_path;
         }
 
+        const descripcion = datos.overview;
 
-        const descripcion = datos.overview ;
+        let estreno = datos.release_date;
 
-        let estreno = datos.release_date ; 
-       
-        
         let calificacion = datos.vote_average;
-        
-        let duracion = datos.runtime 
-       
-    let genre = "Sin género disponible.";
-if (datos.genres && datos.genres.length > 0) {
-  genre = datos.genres.map(function(g){ return g.name; }); 
-}
-    
 
+        let duracion = datos.runtime
+
+        let genre = "Sin género disponible.";
+        if (datos.genres && datos.genres.length > 0) {
+            genre = datos.genres.map(function (g) { return g.name; });
+        }
 
         return (
 
@@ -129,12 +115,12 @@ if (datos.genres && datos.genres.length > 0) {
                         <h3 className="titulodetalle">{titulo}</h3>
                         <p>Calificación: {calificacion}</p>
                         <p>Fecha de estreno: {estreno}</p>
-                        <p>Duración: {duracion} minutos</p> 
+                        <p>Duración: {duracion} minutos</p>
                         <p>Sinópsis: {descripcion}</p>
                         <p>Género: {genre}</p>
                     </div>
-                        <button className="fav" onClick={() => this.Fav()}>
-                    {this.state.fav ? "Eliminar de favoritos" : "Agregar a favoritos"}
+                    <button className="fav" onClick={() => this.Fav()}>
+                        {this.state.fav ? "Eliminar de favoritos" : "Agregar a favoritos"}
                     </button>
 
                 </article>
@@ -142,7 +128,8 @@ if (datos.genres && datos.genres.length > 0) {
             </React.Fragment>
 
         );
-    } } 
+    }
+}
 
 
 export default DetalleP;

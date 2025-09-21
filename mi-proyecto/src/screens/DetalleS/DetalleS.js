@@ -5,7 +5,7 @@ class DetalleS extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: null,
+            data: [],
             cargando: true,
             fav: false
 
@@ -76,7 +76,9 @@ class DetalleS extends Component {
             { ruta: "/favoritos", nombre: "Favoritas" },
 
         ];
-
+        if (this.state.data.length === 0){
+            <p>Cargando...</p>
+         }
         const datos = this.state.data;
 
         let titulo = datos.name
@@ -95,7 +97,7 @@ class DetalleS extends Component {
 
         let genre = "Sin género disponible.";
         if (datos.genres && datos.genres.length > 0) {
-            genre = datos.genres.map(g => g.name);
+          genre = datos.genres.map(function(g){ return g.name; }); 
         }
 
 
