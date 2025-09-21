@@ -22,7 +22,7 @@ class Seccion extends Component {
 
         </div>
 
-        <section className="cards-grid">
+        <section className="seccion">
           {this.state.datos.length === 0 ? (
             <p>Cargando...</p>
           ) : (
