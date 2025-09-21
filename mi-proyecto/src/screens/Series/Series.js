@@ -4,7 +4,7 @@ import SeccionItem from "../../components/SeccionItem/SeccionItem";
 
 
 class Series extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       datos: [],
@@ -20,7 +20,7 @@ class Series extends Component {
   cargarMas = () => {
     const categoria = this.props.match.params.categoria;
     const url = "https://api.themoviedb.org/3/tv/" + categoria + "?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=" + this.state.contador;
-      
+
     fetch(url)
       .then((response) => response.json())
       .then((data) =>
@@ -36,31 +36,38 @@ class Series extends Component {
   evitarSubmit(event) {
     event.preventDefault();
   }
-  
+
   controlarCambios = (event) => {
     this.setState({ filtro: event.target.value })
   }
+  filtrarSeries(textoAFiltrar) {
+    return this.state.datos.filter((peli) =>
+      peli.title.toLowerCase().includes(textoAFiltrar)
+    );
+  }
 
-  render(){
-    const categoria = this.props.match.params.categoria; 
+  render() {
+    const categoria = this.props.match.params.categoria;
     const titulo = categoria === "on_the_air" ? "Series en emisión" : "Series populares";
-    const seriesFiltradas = this.state.datos.filter(serie => serie.name.toLowerCase().includes(this.state.filtro.toLowerCase()))
-
+    const seriesFiltradas =
+      this.state.filtro === ""
+        ? this.state.datos
+        : this.filtrarSeries(this.state.filtro.toLowerCase());
     return (
       <React.Fragment>
         <Menu
           itemsMenu={[
-          { ruta: "/",            nombre: "Home" },
-          { ruta: "/peliculas/popular", nombre: "Películas Populares" },
-          { ruta: "/peliculas/now_playing", nombre: "Películas en Cartelera" },
-          { ruta: "/series/popular", nombre: "Series Populares" },
-          { ruta: "/series/on_the_air", nombre: "Series en Emisión" },
-          { ruta: "/favoritos",   nombre: "Favoritas" },
+            { ruta: "/", nombre: "Home" },
+            { ruta: "/peliculas/popular", nombre: "Películas Populares" },
+            { ruta: "/peliculas/now_playing", nombre: "Películas en Cartelera" },
+            { ruta: "/series/popular", nombre: "Series Populares" },
+            { ruta: "/series/on_the_air", nombre: "Series en Emisión" },
+            { ruta: "/favoritos", nombre: "Favoritas" },
           ]}
         />
 
         <main className="cont">
-        <form onSubmit={(event) => this.evitarSubmit(event)}>
+          <form onSubmit={(event) => this.evitarSubmit(event)}>
             <label>Filtrar contenido por: </label>
             <input type="text" placeholder="escribir acá..." onChange={(event) => this.controlarCambios(event)} value={this.state.filtro} />
           </form>
