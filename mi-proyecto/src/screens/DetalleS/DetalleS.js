@@ -77,36 +77,21 @@ class DetalleS extends Component {
 
         ];
 
-
-        if (this.state.cargando) {
-            return <p>Cargando...</p>;
-        }
         const datos = this.state.data;
 
-        let titulo = "Sin título";
-            if (datos.name) {
-                titulo = datos.name
-            }
+        let titulo = datos.name
 
         let poster = "/assets/img/placeholder-poster.svg";
         if (datos.poster_path) {
             poster = "https://image.tmdb.org/t/p/w342" + datos.poster_path;
         }
 
-        let descripcion = "Sin descripción disponible.";
-        if (datos.overview) {
-            descripcion = datos.overview
-        }
+        let descripcion = datos.overview
 
-        let estreno = "Sin fecha de estreno disponible."
-            if (datos.first_air_date){
-                estreno = datos.first_air_date
-            }
+        let estreno = datos.first_air_date
 
-        let calificacion = "Sin calificación disponible.";
-            if (datos.vote_average) {
-                calificacion = datos.vote_average
-            }
+        let calificacion = datos.vote_average
+
 
         let genre = "Sin género disponible.";
         if (datos.genres && datos.genres.length > 0) {
