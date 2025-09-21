@@ -36,11 +36,11 @@ class DetalleP extends Component {
 
 
         if (this.state.fav === false) {
-            favs.push(data);
+            favs.push(data.id)
             this.guardarFav(favs, item);
             this.setState({ fav: true });
         } else {
-            let filtrados = favs.filter(favor => favor.id !== data.id);
+            let filtrados = favs.filter(favor => favor!==data.id);
             this.guardarFav(filtrados, item);
             this.setState({ fav: false });
         }
@@ -61,7 +61,7 @@ class DetalleP extends Component {
       let favs = this.Favoritos(item);
 
       
-      let estafav = favs.filter(favorito => favorito.id === data.id);
+      let estafav = favs.filter(favorito => favorito === data.id);
 
       this.setState({ 
         data: data, 
