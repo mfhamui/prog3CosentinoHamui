@@ -51,9 +51,7 @@ class Peliculas extends Component {
     const categoria = this.props.match.params.categoria; // "popular" | "now_playing"
     const titulo = categoria === "now_playing" ? "Películas en cartelera" : "Películas populares";
     
-    /* esto de aca abajo es lo viejo, despues es todo igual:
-    const peliculasFiltradas = this.state.datos.filter(pelicula => pelicula.title.toLowerCase().includes(this.state.filtro.toLowerCase()))
-    y lo que esta aca abajo es lo nuevo: */
+    
 
       const peliculasFiltradas =
       this.state.filtro === ""
