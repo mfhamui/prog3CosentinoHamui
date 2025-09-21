@@ -82,7 +82,7 @@ class Resultados extends Component {
             <h2>Series</h2>
           </div>
           {resultadosS.length > 0 ?
-            (<section className="cards-grid">
+            (<section className="seccion">
               {resultadosS.map((item) => (
                 <SeccionItem
                   key={item.id}
@@ -97,7 +97,7 @@ class Resultados extends Component {
             <h2>Peliculas</h2>
           </div>
           {resultadosP.length > 0 ?
-            (<section className="cards-grid">
+            (<section className="seccion">
               {resultadosP.map((item) => (
                 <SeccionItem
                   key={item.id}
