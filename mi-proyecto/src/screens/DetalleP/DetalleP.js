@@ -6,7 +6,6 @@ class DetalleP extends Component {
         super(props);
         this.state = {
             data: [],
-            cargando: true,
             fav: false
         };
     }
