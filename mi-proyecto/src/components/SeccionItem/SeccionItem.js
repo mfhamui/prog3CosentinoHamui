@@ -114,7 +114,7 @@ class SeccionItem extends Component {
     if (this.esTV()) {
       detalle = "/detalle/tv/" + datos.id;
     } else {
-      detalle = "/detalle/movies/" + datos.id;
+      detalle = "/detalle/movie/" + datos.id;
     }
 
     return (

@@ -29,14 +29,8 @@ class DetalleP extends Component {
 
     Fav() {
         const data = this.state.data;
-        const tipo = this.props.match.params.tipo;
-        let item
+        let item = "peliculasFavoritas"
 
-        if (tipo === "tv") {
-            item = "seriesFavoritas"
-        } else {
-            item = "peliculasFavoritas"
-        }
         let favs = this.Favoritos(item);
 
 
@@ -52,19 +46,15 @@ class DetalleP extends Component {
     }
 
     componentDidMount() {
-        const tipo = this.props.match.params.tipo;
-        const id = this.props.match.params.id;
-        const endpoint = `https://api.themoviedb.org/3/${tipo}/${id}?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR`;
+  
+      const id = this.props.match.params.id;
+    const endpoint = "https://api.themoviedb.org/3/tv/" + id + "?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR";
 
         fetch(endpoint)
             .then((res) => res.json())
             .then((data) => {
-                  let item;
-      if (tipo === "tv") {
-        item = "seriesFavoritas";
-      } else {
-        item = "peliculasFavoritas";
-      }
+            let item = "peliculasFavoritas";
+     
 
       
       let favs = this.Favoritos(item);
@@ -98,17 +88,14 @@ class DetalleP extends Component {
         ];
 
 
-        if (this.state.cargando) {
-            return <p>Cargando...</p>;
-        }
+         if (this.state.datos.length === 0 ) {
+            <p>Cargando...</p>
+         }
         const datos = this.state.data;
-        const tipo = this.props.match.params.tipo;
+      
+        let titulo = datos.title 
 
-
-        const titulo = tipo === "tv"
-            ? (datos.name ? datos.name : "(Sin título)")
-            : (datos.title ? datos.title : "(Sin título)");
-
+  
 
         let poster = "/assets/img/placeholder-poster.svg";
         if (datos.poster_path) {
@@ -116,20 +103,20 @@ class DetalleP extends Component {
         }
 
 
-        const descripcion = datos.overview ? datos.overview : "Sin descripción disponible.";
+        const descripcion = datos.overview ;
 
-        let estreno = tipo === "tv" 
-        ? (datos.first_air_date ? datos.first_air_date : "Sin fecha de estreno disponible.")
-        : (datos.release_date ? datos.release_date : "Sin fecha de estreno disponible.");
-        
-        let calificacion = datos.vote_average ? datos.vote_average : "Sin calificación disponible.";
-        
-        let duracion = tipo === "tv" ? ("") : (datos.runtime ? datos.runtime : "Sin duración disponible.");
+        let estreno = datos.release_date ; 
        
-      let genre = "Sin género disponible.";
-        if (datos.genres && datos.genres.length > 0) {
-        genre = datos.genres.map(g => g.name);   
-    }
+        
+        let calificacion = datos.vote_average;
+        
+        let duracion = datos.runtime 
+       
+    let genre = "Sin género disponible.";
+if (datos.genres && datos.genres.length > 0) {
+  genre = datos.genres.map(function(g){ return g.name; }); 
+}
+    
 
 
         return (
@@ -142,7 +129,7 @@ class DetalleP extends Component {
                         <h3 className="titulodetalle">{titulo}</h3>
                         <p>Calificación: {calificacion}</p>
                         <p>Fecha de estreno: {estreno}</p>
-                        {duracion ? <p>Duración: {duracion} minutos</p> : null}
+                        <p>Duración: {duracion} minutos</p> 
                         <p>Sinópsis: {descripcion}</p>
                         <p>Género: {genre}</p>
                     </div>
@@ -155,7 +142,7 @@ class DetalleP extends Component {
             </React.Fragment>
 
         );
-    }
-}
+    } } 
+
 
 export default DetalleP;

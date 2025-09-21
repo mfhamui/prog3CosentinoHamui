@@ -95,7 +95,6 @@ class Resultados extends Component {
                 <SeccionItem
                   key={item.id}
                   data={item}
-                  tipo="tv"
                   claseExtra="seis"
                 />
               ))}
