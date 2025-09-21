@@ -28,10 +28,10 @@ class Buscador extends Component {
           type="text"
           placeholder="Buscar..."
           value={this.state.query}
-          onChange={(event) => this.controlarCambios(event)}
+          onChange={this.controlarCambios}
         />
 
-        <button type="submit" className="btn-sm btn-success">Buscar</button>
+        <button type="submit">Buscar</button>
       </form>
     );
   }
