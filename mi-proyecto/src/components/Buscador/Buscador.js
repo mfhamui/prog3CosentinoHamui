@@ -23,7 +23,7 @@ class Buscador extends Component {
 
   render() {
     return (
-      <form className="search-form" onSubmit={this.enviar}>
+      <form onSubmit={this.enviar}>
         <input
           type="text"
           placeholder="Buscar..."
