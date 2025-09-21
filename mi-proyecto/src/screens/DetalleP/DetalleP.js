@@ -5,9 +5,10 @@ class DetalleP extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: null,
+            data: [],
             cargando: true,
-            fav: false
+            fav: false,
+      
             
         };
     }
@@ -48,7 +49,7 @@ class DetalleP extends Component {
     componentDidMount() {
   
       const id = this.props.match.params.id;
-    const endpoint = "https://api.themoviedb.org/3/tv/" + id + "?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR";
+     const endpoint = "https://api.themoviedb.org/3/movie/" + id + "?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR";
 
         fetch(endpoint)
             .then((res) => res.json())
@@ -87,12 +88,11 @@ class DetalleP extends Component {
 
         ];
 
-
-         if (this.state.datos.length === 0 ) {
+         if (this.state.data.length==0){
             <p>Cargando...</p>
          }
-        const datos = this.state.data;
-      
+       
+         const datos = this.state.data;
         let titulo = datos.title 
 
   
