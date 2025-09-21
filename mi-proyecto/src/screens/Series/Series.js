@@ -82,7 +82,6 @@ class Series extends Component {
                 <SeccionItem
                   key={item.id}
                   data={item}
-                  tipo="tv"
                   claseExtra={this.props.cant === 6 ? "seis" : "cuatro"}
                 />
               ))

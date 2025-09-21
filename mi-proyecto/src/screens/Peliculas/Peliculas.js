@@ -40,7 +40,7 @@ class Peliculas extends Component {
   controlarCambios(event) {
     this.setState({ filtro: event.target.value });
   }
-/* esto de aca abajo es nuevo*/
+
   filtrarPeliculas(textoAFiltrar) {
     return this.state.datos.filter((peli) =>
       peli.title.toLowerCase().includes(textoAFiltrar)
@@ -48,7 +48,7 @@ class Peliculas extends Component {
   }
 
   render() {
-    const categoria = this.props.match.params.categoria; // "popular" | "now_playing"
+    const categoria = this.props.match.params.categoria; 
     const titulo = categoria === "now_playing" ? "Películas en cartelera" : "Películas populares";
     
     
@@ -88,7 +88,6 @@ class Peliculas extends Component {
                 <SeccionItem
                   key={item.id}
                   data={item}
-                  tipo="movie"
                   claseExtra={this.props.cant === 6 ? "seis" : "cuatro"}
                 />
               ))
