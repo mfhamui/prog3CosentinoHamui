@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import SeccionItem from "../SeccionItem/SeccionItem";
 import "./Seccion.css";
+import { Link } from "react-router-dom";
+
 
 class Seccion extends Component {
   constructor(props){
@@ -14,7 +16,8 @@ class Seccion extends Component {
       <section className="home-section">
         <div className="info-box">
           <h2>{this.props.titulo}</h2>
-          <a className="ver-todas" href={this.props.verTodas}>Ver todas </a>
+        <Link className="ver-todas" to={this.props.verTodas}> Ver todas</Link>
+
         </div>
 
         <section className="cards-grid">

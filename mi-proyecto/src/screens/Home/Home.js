@@ -18,7 +18,6 @@ function Home() {
   let secciones = [
     {
       titulo: "Peliculas populares de esta semana",
-
       endpoint: "https://api.themoviedb.org/3/movie/popular?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=1",
       verTodas: "/peliculas/popular",
       cant: 4
@@ -26,7 +25,6 @@ function Home() {
     },
     {
       titulo: "Peliculas en Cartelera",
-
       endpoint: "https://api.themoviedb.org/3/movie/now_playing?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=1",
       verTodas: "/peliculas/now_playing",
       cant: 6

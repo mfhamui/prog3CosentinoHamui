@@ -9,13 +9,14 @@ class SeccionItem extends Component {
       data: props.data,
       verMas: false,
       textoBoton: "ver descripcion",
-      clase: "noMostrar"
+      clase: "noMostrar",
+       fav: false 
     };
   }
 
   
    esTV() {
-    if (this.state.data && this.state.data.name) {
+    if ( this.state.data.name) {
       return true;
     } else {
       return false;
@@ -51,7 +52,7 @@ class SeccionItem extends Component {
 
 
     if (this.state.fav === false) {
-      favs.push(this.state.data);
+      favs.push(this.state.data.id);
       this.guardarFav(favs, item);
       this.setState({ fav: true });
     } else {
