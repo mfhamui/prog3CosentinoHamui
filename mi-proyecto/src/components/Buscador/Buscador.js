@@ -10,21 +10,20 @@ class Buscador extends Component {
     };
   }
 
-  controlarCambios(event) {
+  controlarCambios = (event) => {
     this.setState({ query: event.target.value });
   }
 
 
-  evitarSubmit(event) {
+  enviar = (event)=> {
     event.preventDefault();
-    const query = this.state.query;
   
-    this.props.history.push(`/resultados/${query}`);
+    this.props.history.push("/resultados/" + this.state.query);
   }
 
   render() {
     return (
-      <form className="search-form" onSubmit={(event) => this.evitarSubmit(event)}>
+      <form className="search-form" onSubmit={this.enviar}>
         <input
           type="text"
           name="searchData"
