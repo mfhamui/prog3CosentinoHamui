@@ -53,7 +53,7 @@ class DetalleS extends Component {
             .then((res) => res.json())
             .then((data) => {
                 let favs = this.Favoritos("seriesFavoritas");
-                let estafav = favs.filter(favorito => favorito.id==data.id);
+                let estafav = favs.filter(favorito => favorito.id === data.id);
 
                 this.setState({
                     data: data,

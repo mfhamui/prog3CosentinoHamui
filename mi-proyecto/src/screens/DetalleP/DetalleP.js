@@ -58,7 +58,7 @@ class DetalleP extends Component {
       let favs = this.Favoritos(item);
 
       
-      let estafav = favs.filter(favorito => favorito.id==data.id);
+      let estafav = favs.filter(favorito => favorito.id === data.id);
 
                 this.setState({
                     data: data,

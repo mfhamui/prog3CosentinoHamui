@@ -33,10 +33,8 @@ class Resultados extends Component {
           })
         }
       })
-      .catch(() => this.setState({
-        resultadosS: [],
-        error: "Ocurrió un error"
-      }));
+      .catch((e) => console.log(e));
+
     //peliculas
     fetch(`https://api.themoviedb.org/3/search/movie?api_key=6702edd122b3200dc3c322dcd7975956&language=es-ES&query=${query}`)
       .then((response) => response.json())
@@ -52,10 +50,7 @@ class Resultados extends Component {
           })
         }
       })
-      .catch(() => this.setState({
-        resultadosP: [],
-        error: "Ocurrió un error"
-      }));
+      .catch((e) => console.log(e));
 
   }
 
