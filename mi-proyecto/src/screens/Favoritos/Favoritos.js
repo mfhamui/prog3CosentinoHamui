@@ -53,7 +53,7 @@ class Favoritos extends Component {
                 <Menu itemsMenu={itemsMenu} />
                 <div>
                    
-                    <div className="info-box">
+                    <div className="infos">
                         <h2>Series favoritas</h2>
                     </div>
                     {favoritosS.length > 0 ?
@@ -69,7 +69,7 @@ class Favoritos extends Component {
                         </section>) :
                         (<p>No hay series favoritas</p>)}
 
-                    <div className="info-box">
+                    <div className="infos">
                         <h2>Peliculas favoritas</h2>
                     </div>
                     {favoritosP.length > 0 ?

@@ -8,15 +8,15 @@ class Seccion extends Component {
   constructor(props){
     super(props);
     this.state = { datos: []
-      
+
      };
   }
 
   render(){
  
     return (
-      <section className="home-section">
-        <div className="info-box">
+      <section className="home">
+        <div className="infos">
           <h2>{this.props.titulo}</h2>
         <Link className="ver-todas" to={this.props.verTodas}> Ver todas</Link>
 

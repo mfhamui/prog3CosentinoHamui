@@ -112,7 +112,7 @@ class DetalleP extends Component {
 
             <React.Fragment>
                 <Menu itemsMenu={itemsMenu} />
-                <article className={`home-i ${this.props.claseExtra} detalle-container`} >
+                <article className={`home-i  det`}>
                     <img src={poster} alt={titulo} />
                     <div className="detalle-info">
                         <h3 className="titulodetalle">{titulo}</h3>
