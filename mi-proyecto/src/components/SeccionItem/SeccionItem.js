@@ -120,7 +120,7 @@ class SeccionItem extends Component {
     }
 
     return (
-      <article className={`home-i ${this.props.claseExtra}`} >
+      <article className={`homeItem ${this.props.claseExtra}`} >
         <img src={poster} alt={titulo} />
         <h3><Link to={detalle}>{titulo}</Link></h3>
 

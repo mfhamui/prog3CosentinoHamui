@@ -1,7 +1,7 @@
 .noMostrar { display: none; }
 
 
-.home-i {
+.homeItem {
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
@@ -13,17 +13,17 @@
 }
 
 
-.home-i.cuatro { width: 23%; }
+.homeItem.cuatro { width: 23%; }
 
 
-.home-i.seis { width: 15%; }
+.homeItem.seis { width: 15%; }
 
-.home-i img {
+.homeItem img {
   width: 100%;
   height: auto;
 }
 
-.home-i h3 {
+.homeItem h3 {
   margin: 12px;
   font-size: 16px;
   font-weight: bold;
@@ -32,12 +32,12 @@
 
 }
 
-.home-i h3 a {
+.homeItem h3 a {
   text-decoration: none;   
   color: #111;             
 }
 
-.home-i p {
+.homeItem p {
    margin: 8px 12px;
   font-size: 14px;
   color: #374151;
@@ -85,7 +85,7 @@
 }
 
 @media (max-width: 760px){
-  .home-i.cuatro,
-  .home-i.seis { width: 100%; }  
+  .homeItem.cuatro,
+  .homeItem.seis { width: 100%; }  
 }
 

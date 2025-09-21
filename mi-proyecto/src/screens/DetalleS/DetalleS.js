@@ -104,7 +104,7 @@ class DetalleS extends Component {
 
             <React.Fragment>
                 <Menu itemsMenu={itemsMenu} />
-                <article className={`home-i det`} >
+                <article className={`homeItem det`} >
                     <img src={poster} alt={titulo} />
                     <div className="detalle-info">
                         <h3 className="titulodetalle">{titulo}</h3>
