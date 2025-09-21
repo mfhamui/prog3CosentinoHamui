@@ -27,7 +27,6 @@ class Seccion extends Component {
                   <SeccionItem
                     key={item.id}
                     data={item}
-                    tipo={this.props.tipo}
                     claseExtra={this.props.cant === 6 ? "seis" : "cuatro"}
                   />
                 );

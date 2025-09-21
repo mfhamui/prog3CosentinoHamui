@@ -18,7 +18,7 @@ function Home() {
   let secciones = [
     {
       titulo: "Peliculas populares de esta semana",
-      tipo: "movie",
+
       endpoint: "https://api.themoviedb.org/3/movie/popular?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=1",
       verTodas: "/peliculas/popular",
       cant: 4
@@ -26,7 +26,7 @@ function Home() {
     },
     {
       titulo: "Peliculas en Cartelera",
-      tipo: "movie",
+
       endpoint: "https://api.themoviedb.org/3/movie/now_playing?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=1",
       verTodas: "/peliculas/now_playing",
       cant: 6
@@ -35,14 +35,12 @@ function Home() {
 
     {
       titulo: "Series populares de esta semana",
-      tipo: "tv",
       endpoint: "https://api.themoviedb.org/3/tv/popular?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=1",
       verTodas: "/series/popular",
       cant: 4
     },
     {
       titulo: "Series en emisión",
-      tipo: "tv",
       endpoint: "https://api.themoviedb.org/3/tv/on_the_air?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=1",
       verTodas: "/series/on_the_air",
       cant: 6

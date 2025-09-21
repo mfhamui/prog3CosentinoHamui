@@ -13,6 +13,16 @@ class SeccionItem extends Component {
     };
   }
 
+  
+   esTV() {
+    if (this.state.data && this.state.data.name) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
   Favoritos(item) {
     let favs = localStorage.getItem(item);
     if (favs === null) {
@@ -29,10 +39,10 @@ class SeccionItem extends Component {
 
   Fav() {
     const id = this.state.data.id;
-    const tipo = this.props.tipo;
+   
     let item
 
-    if (tipo === "tv") {
+    if (this.esTV()) {
       item = "seriesFavoritas"
     } else {
       item = "peliculasFavoritas"
@@ -53,10 +63,9 @@ class SeccionItem extends Component {
 
   componentDidMount() {
     const id = this.state.data.id;
-    const tipo = this.props.tipo;
     let item
 
-    if (tipo === "tv") {
+    if (this.esTV()) {
       item = "seriesFavoritas"
     } else {
       item = "peliculasFavoritas"
@@ -79,22 +88,33 @@ class SeccionItem extends Component {
   render() {
     const datos = this.state.data;
 
-
-    const titulo = this.props.tipo === "tv"
-      ? (datos.name ? datos.name : "(Sin título)")
-      : (datos.title ? datos.title : "(Sin título)");
-
+    let titulo = "Sin título";
+    if (this.esTV()) {
+      if (datos.name) {
+        titulo = datos.name;
+      }
+    } else {
+      if (datos.title) {
+        titulo = datos.title;
+      }
+    }
+   
     
     let poster = "/assets/img/placeholder-poster.svg";
     if (datos.poster_path) {
       poster = "https://image.tmdb.org/t/p/w342" + datos.poster_path;
     }
 
+    
     const descripcion = datos.overview ? datos.overview : "Sin descripción disponible.";
 
-   
 
-    const detalle = `/detalle/${this.props.tipo}/${datos.id}`;
+  let detalle = "";
+    if (this.esTV()) {
+      detalle = "/detalle/tv/" + datos.id;
+    } else {
+      detalle = "/detalle/movies/" + datos.id;
+    }
 
     return (
       <article className={`home-i ${this.props.claseExtra}`} >
