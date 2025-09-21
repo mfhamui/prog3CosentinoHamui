@@ -60,6 +60,8 @@ class SeccionItem extends Component {
       this.guardarFav(filtrados, item);
       this.setState({ fav: false });
     }
+
+    if (this.props.borrar) { this.props.borrar(id); }
   }
 
   componentDidMount() {

@@ -25,6 +25,13 @@ class Favoritos extends Component {
             favoritosS: series
         })
     }
+    borrar = (id) => {
+    this.setState({
+    favoritosP: this.state.favoritosP.filter(p => p.id !== id),
+    favoritosS: this.state.favoritosS.filter(s => s.id !== id)
+    });
+};
+
 
     render() {
         const favoritosP  = this.state.favoritosP;
@@ -55,8 +62,8 @@ class Favoritos extends Component {
                                 <SeccionItem
                                     key={item.id}
                                     data={item}
-                                    tipo="tv"
-                                    claseExtra="seis"
+                                    borrar={this.borrar}
+                                     claseExtra="seis"
                                 />
                             ))}
                         </section>) :
@@ -71,7 +78,7 @@ class Favoritos extends Component {
                                 <SeccionItem
                                     key={item.id}
                                     data={item}
-                                    tipo="movie"
+                                    borrar={this.borrar}
                                     claseExtra="seis"
                                 />
                             ))}
