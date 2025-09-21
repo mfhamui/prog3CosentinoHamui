@@ -74,7 +74,7 @@ class SeccionItem extends Component {
       item = "peliculasFavoritas"
     }
     let favs = this.Favoritos(item);
-    let estafav = favs.filter(favorito => favorito.id==id)
+    let estafav = favs.filter(favorito => favorito.id===id)
     this.setState({
       fav: estafav.length > 0 ? true : false
     });

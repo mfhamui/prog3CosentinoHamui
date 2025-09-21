@@ -7,7 +7,6 @@ class Resultados extends Component {
     this.state = {
       resultadosP: [],
       resultadosS: [],
-      cargando: true,
       error: ""
     }
   }
@@ -25,19 +24,17 @@ class Resultados extends Component {
         if (data.results) {
           this.setState({
             resultadosS: data.results,
-            cargando: false
+          
           })
         } else {
           this.setState({
             resultadosS: [],
-            cargando: false,
             error: `No se encontraron resultados para ${query}`
           })
         }
       })
       .catch(() => this.setState({
         resultadosS: [],
-        cargando: false,
         error: "Ocurrió un error"
       }));
     //peliculas
@@ -47,19 +44,16 @@ class Resultados extends Component {
         if (data.results) {
           this.setState({
             resultadosP: data.results,
-            cargando: false
           })
         } else {
           this.setState({
             resultadosP: [],
-            cargando: false,
             error: `No se encontraron resultados para ${query}`
           })
         }
       })
       .catch(() => this.setState({
         resultadosP: [],
-        cargando: false,
         error: "Ocurrió un error"
       }));
 
@@ -76,7 +70,7 @@ class Resultados extends Component {
       { ruta: "/favoritos", nombre: "Favoritas" },
 
     ];
-    if (this.state.resultadosP.length === 0 && this.state.resultadosS.length) {
+    if (this.state.resultadosP.length === 0 && this.state.resultadosS.length === 0) {
       <p>Cargando...</p>
     }
     const resultadosP = this.state.resultadosP;
