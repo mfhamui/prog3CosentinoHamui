@@ -7,7 +7,7 @@ class Resultados extends Component {
     this.state = {
       resultadosP: [],
       resultadosS: [],
-      cargando: false,
+      cargando: true,
       error: ""
     }
   }
@@ -17,7 +17,7 @@ class Resultados extends Component {
     this.buscar(query);
   }
   buscar = (query) => {
-    this.setState({ cargando: true, error: "" });
+
     //series
     fetch(`https://api.themoviedb.org/3/search/tv?api_key=6702edd122b3200dc3c322dcd7975956&language=es-ES&query=${query}`)
       .then((response) => response.json())
@@ -66,9 +66,6 @@ class Resultados extends Component {
   }
 
   render() {
-    const resultadosP = this.state.resultadosP;
-    const resultadosS = this.state.resultadosS;
-    const query = this.props.match.params.query;
 
     let itemsMenu = [
       { ruta: "/", nombre: "Home" },
@@ -79,6 +76,12 @@ class Resultados extends Component {
       { ruta: "/favoritos", nombre: "Favoritas" },
 
     ];
+    if (this.state.resultadosP.length === 0 && this.state.resultadosS.length) {
+      <p>Cargando...</p>
+    }
+    const resultadosP = this.state.resultadosP;
+    const resultadosS = this.state.resultadosS;
+    const query = this.props.match.params.query;
 
     return (
 
