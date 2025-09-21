@@ -8,7 +8,7 @@ class DetalleS extends Component {
             data: null,
             cargando: true,
             fav: false
-            
+
         };
     }
 
@@ -29,14 +29,9 @@ class DetalleS extends Component {
 
     Fav() {
         const data = this.state.data;
-        const tipo = this.props.match.params.tipo;
-        let item
+        let item = "seriesFavoritas"
 
-        if (tipo === "tv") {
-            item = "seriesFavoritas"
-        } else {
-            item = "peliculasFavoritas"
-        }
+
         let favs = this.Favoritos(item);
 
 
@@ -52,39 +47,24 @@ class DetalleS extends Component {
     }
 
     componentDidMount() {
-        const tipo = this.props.match.params.tipo;
         const id = this.props.match.params.id;
-        const endpoint = `https://api.themoviedb.org/3/${tipo}/${id}?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR`;
+        const endpoint = `https://api.themoviedb.org/3/tv/${id}?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR`;
 
         fetch(endpoint)
             .then((res) => res.json())
             .then((data) => {
-                  let item;
-      if (tipo === "tv") {
-        item = "seriesFavoritas";
-      } else {
-        item = "peliculasFavoritas";
-      }
+                let favs = this.Favoritos("seriesFavoritas");
+                let estafav = favs.filter(favorito => favorito.id === data.id);
 
-      
-      let favs = this.Favoritos(item);
-
-      
-      let estafav = favs.filter(favorito => favorito.id === data.id);
-
-      this.setState({ 
-        data: data, 
-        cargando: false, 
-        fav: estafav.length > 0 ? true : false 
-      });
-    })
+                this.setState({
+                    data: data,
+                    cargando: false,
+                    fav: estafav.length > 0 ? true : false
+                });
+            })
             .catch((error) => console.log(error));
 
-
     }
-
-
-
 
     render() {
         let itemsMenu = [
@@ -102,34 +82,36 @@ class DetalleS extends Component {
             return <p>Cargando...</p>;
         }
         const datos = this.state.data;
-        const tipo = this.props.match.params.tipo;
 
-
-        const titulo = tipo === "tv"
-            ? (datos.name ? datos.name : "(Sin título)")
-            : (datos.title ? datos.title : "(Sin título)");
-
+        let titulo = "Sin título";
+            if (datos.name) {
+                titulo = datos.name
+            }
 
         let poster = "/assets/img/placeholder-poster.svg";
         if (datos.poster_path) {
             poster = "https://image.tmdb.org/t/p/w342" + datos.poster_path;
         }
 
+        let descripcion = "Sin descripción disponible.";
+        if (datos.overview) {
+            descripcion = datos.overview
+        }
 
-        const descripcion = datos.overview ? datos.overview : "Sin descripción disponible.";
+        let estreno = "Sin fecha de estreno disponible."
+            if (datos.first_air_date){
+                estreno = datos.first_air_date
+            }
 
-        let estreno = tipo === "tv" 
-        ? (datos.first_air_date ? datos.first_air_date : "Sin fecha de estreno disponible.")
-        : (datos.release_date ? datos.release_date : "Sin fecha de estreno disponible.");
-        
-        let calificacion = datos.vote_average ? datos.vote_average : "Sin calificación disponible.";
-        
-        let duracion = tipo === "tv" ? ("") : (datos.runtime ? datos.runtime : "Sin duración disponible.");
-       
-      let genre = "Sin género disponible.";
+        let calificacion = "Sin calificación disponible.";
+            if (datos.vote_average) {
+                calificacion = datos.vote_average
+            }
+
+        let genre = "Sin género disponible.";
         if (datos.genres && datos.genres.length > 0) {
-        genre = datos.genres.map(g => g.name);   
-    }
+            genre = datos.genres.map(g => g.name);
+        }
 
 
         return (
@@ -142,12 +124,11 @@ class DetalleS extends Component {
                         <h3 className="titulodetalle">{titulo}</h3>
                         <p>Calificación: {calificacion}</p>
                         <p>Fecha de estreno: {estreno}</p>
-                        {duracion ? <p>Duración: {duracion} minutos</p> : null}
                         <p>Sinópsis: {descripcion}</p>
                         <p>Género: {genre}</p>
                     </div>
-                        <button className="fav" onClick={() => this.Fav()}>
-                    {this.state.fav ? "Eliminar de favoritos" : "Agregar a favoritos"}
+                    <button className="fav" onClick={() => this.Fav()}>
+                        {this.state.fav ? "Eliminar de favoritos" : "Agregar a favoritos"}
                     </button>
 
                 </article>
