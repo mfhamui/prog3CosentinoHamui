@@ -7,7 +7,9 @@ import { Link } from "react-router-dom";
 class Seccion extends Component {
   constructor(props){
     super(props);
-    this.state = { datos: [] };
+    this.state = { datos: []
+      
+     };
   }
 
   render(){
