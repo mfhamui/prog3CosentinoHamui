@@ -8,12 +8,14 @@ import Series from "./screens/Series/Series";
 import NotFound from "./screens/Notfound/Notfound";
 import DetalleP from "./screens/DetalleP/DetalleP";
 import Favoritos from "./screens/Favoritos/Favoritos";
+import DetalleS from "./screens/DetalleS/DetalleS";
 
 function App() {
   return (
  <Switch>
       <Route path="/" exact={true} component={Home} /> 
-      <Route path="/detalle/:tipo/:id" component={DetalleP} /> 
+      <Route path="/detalle/movie/:id" component={DetalleP} /> 
+      <Route path="/detalle/tv/:id" component={DetalleS} />
       <Route path="/resultados/:query" component={Resultados} /> 
       <Route path="/peliculas/:categoria" component={Peliculas} /> 
       <Route path="/series/:categoria" component={Series} />
