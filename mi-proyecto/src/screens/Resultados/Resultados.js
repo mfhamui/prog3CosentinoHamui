@@ -78,7 +78,7 @@ class Resultados extends Component {
         <Menu itemsMenu={itemsMenu} />
         <div>
           <h1>Resultados de búsqueda de: {query} </h1>
-          <div className="info-box">
+          <div className="infos">
             <h2>Series</h2>
           </div>
           {resultadosS.length > 0 ?
@@ -93,7 +93,7 @@ class Resultados extends Component {
             </section>) :
             (<p>No hay resultados para {query} </p>)}
 
-          <div className="info-box">
+          <div className="infos">
             <h2>Peliculas</h2>
           </div>
           {resultadosP.length > 0 ?
