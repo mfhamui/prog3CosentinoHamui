@@ -26,7 +26,6 @@ class Buscador extends Component {
       <form className="search-form" onSubmit={this.enviar}>
         <input
           type="text"
-          name="searchData"
           placeholder="Buscar..."
           value={this.state.query}
           onChange={(event) => this.controlarCambios(event)}
