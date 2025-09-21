@@ -56,11 +56,8 @@ class DetalleP extends Component {
             .then((data) => {
             let item = "peliculasFavoritas";
      
-
-      
       let favs = this.Favoritos(item);
-
-      
+     
       let estafav = favs.filter(favorito => favorito === data.id);
 
       this.setState({ 
@@ -71,7 +68,7 @@ class DetalleP extends Component {
     })
             .catch((error) => console.log(error));
 
-
+            
     }
 
 
