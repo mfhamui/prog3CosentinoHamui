@@ -25,13 +25,6 @@ class Favoritos extends Component {
             favoritosS: series
         })
     }
-    borrar = (id) => {
-    this.setState({
-    favoritosP: this.state.favoritosP.filter(p => p.id !== id),
-    favoritosS: this.state.favoritosS.filter(s => s.id !== id)
-    });
-};
-
 
     render() {
         const favoritosP  = this.state.favoritosP;
@@ -53,7 +46,7 @@ class Favoritos extends Component {
                 <Menu itemsMenu={itemsMenu} />
                 <div>
                    
-                    <div className="infos">
+                    <div className="info-box">
                         <h2>Series favoritas</h2>
                     </div>
                     {favoritosS.length > 0 ?
@@ -62,23 +55,23 @@ class Favoritos extends Component {
                                 <SeccionItem
                                     key={item.id}
                                     data={item}
-                                    borrar={this.borrar}
-                                     claseExtra="seis"
+                                    tipo="tv"
+                                    claseExtra="seis"
                                 />
                             ))}
                         </section>) :
                         (<p>No hay series favoritas</p>)}
 
-                    <div className="infos">
+                    <div className="info-box">
                         <h2>Peliculas favoritas</h2>
                     </div>
                     {favoritosP.length > 0 ?
-                        (<section className="dos">
+                        (<section className="seccion">
                             {favoritosP.map((item) => (
                                 <SeccionItem
                                     key={item.id}
                                     data={item}
-                                    borrar={this.borrar}
+                                    tipo="movie"
                                     claseExtra="seis"
                                 />
                             ))}
