@@ -61,7 +61,6 @@ class SeccionItem extends Component {
       this.setState({ fav: false });
     }
 
-    if (this.props.borrar) { this.props.borrar(id); }
   }
 
   componentDidMount() {

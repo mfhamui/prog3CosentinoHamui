@@ -6,8 +6,8 @@ import Footer from "../../components/Footer/Footer";
 function Home() {
   let itemsMenu = [
     { ruta: "/", nombre: "Home" },
-    { ruta: "/peliculas/popular", nombre: "Películas Populares" },
-    { ruta: "/peliculas/now_playing", nombre: "Películas en Cartelera" },
+    { ruta: "/peliculas/populares", nombre: "Películas Populares" },
+    { ruta: "/peliculas/cartelera", nombre: "Películas en Cartelera" },
     { ruta: "/series/popular", nombre: "Series Populares" },
     { ruta: "/series/on_the_air", nombre: "Series en Emisión" },
     { ruta: "/favoritos", nombre: "Favoritas" },
@@ -19,14 +19,14 @@ function Home() {
     {
       titulo: "Peliculas populares de esta semana",
       endpoint: "https://api.themoviedb.org/3/movie/popular?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=1",
-      verTodas: "/peliculas/popular",
+      verTodas: "/peliculas/populares",
       cant: 4
 
     },
     {
       titulo: "Peliculas en Cartelera",
       endpoint: "https://api.themoviedb.org/3/movie/now_playing?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=1",
-      verTodas: "/peliculas/now_playing",
+      verTodas: "/peliculas/cartelera",
       cant: 6
 
     },

@@ -3,7 +3,8 @@ import { Switch, Route } from "react-router-dom";
 
 import Home from "./screens/Home/Home"; 
 import Resultados from "./screens/Resultados/Resultados";
-import Peliculas from "./screens/Peliculas/Peliculas";
+import PeliculasPopulares from "./screens/PeliculasPopulares/PeliculasPopulares";
+import PeliculasCartelera from "./screens/PeliculasCartelera/PeliculasCartelera";
 import Series from "./screens/Series/Series";
 import NotFound from "./screens/Notfound/Notfound";
 import DetalleP from "./screens/DetalleP/DetalleP";
@@ -17,7 +18,8 @@ function App() {
       <Route path="/detalle/movie/:id" component={DetalleP} /> 
       <Route path="/detalle/tv/:id" component={DetalleS} />
       <Route path="/resultados/:query" component={Resultados} /> 
-      <Route path="/peliculas/:categoria" component={Peliculas} /> 
+      <Route path="/peliculas/populares" component={PeliculasPopulares} />
+      <Route path="/peliculas/cartelera" component={PeliculasCartelera} />  
       <Route path="/series/:categoria" component={Series} />
       <Route path="/favoritos" component={Favoritos} />
       <Route component={NotFound} />

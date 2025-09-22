@@ -2,24 +2,22 @@ import React, { Component } from "react";
 import Menu from "../../components/Menu/Menu";
 import SeccionItem from "../../components/SeccionItem/SeccionItem";
 
-
-class Peliculas extends Component {
+class PeliculasCartelera extends Component {
   constructor(props) {
     super(props);
     this.state = {
       datos: [],
       contador: 1,
-     filtro: "" 
+      filtro: ""
     };
   }
+
   componentDidMount() {
     this.cargarMas();
-
   }
 
   cargarMas = () => {
-    const categoria = this.props.match.params.categoria;
-    const url = "https://api.themoviedb.org/3/movie/" + categoria + "?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=" + this.state.contador;
+    const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=${this.state.contador}`;
 
     fetch(url)
       .then((response) => response.json())
@@ -30,13 +28,12 @@ class Peliculas extends Component {
         })
       )
       .catch((error) => console.log(error));
-  }
+  };
 
   evitarSubmit(event) {
     event.preventDefault();
   }
 
- 
   controlarCambios(event) {
     this.setState({ filtro: event.target.value });
   }
@@ -48,12 +45,7 @@ class Peliculas extends Component {
   }
 
   render() {
-    const categoria = this.props.match.params.categoria; 
-    const titulo = categoria === "now_playing" ? "Películas en cartelera" : "Películas populares";
-    
-    
-
-      const peliculasFiltradas =
+    const peliculasFiltradas =
       this.state.filtro === ""
         ? this.state.datos
         : this.filtrarPeliculas(this.state.filtro.toLowerCase());
@@ -63,10 +55,10 @@ class Peliculas extends Component {
         <Menu
           itemsMenu={[
             { ruta: "/", nombre: "Home" },
-            { ruta: "/peliculas/popular", nombre: "Películas Populares" },
-            { ruta: "/peliculas/now_playing", nombre: "Películas en Cartelera" },
-            { ruta: "/series/popular", nombre: "Series Populares" },
-            { ruta: "/series/on_the_air", nombre: "Series en Emisión" },
+            { ruta: "/peliculas/populares", nombre: "Películas Populares" },
+            { ruta: "/peliculas/cartelera", nombre: "Películas en Cartelera" },
+            { ruta: "/series/populares", nombre: "Series Populares" },
+            { ruta: "/series/emision", nombre: "Series en Emisión" },
             { ruta: "/favoritos", nombre: "Favoritas" },
           ]}
         />
@@ -74,16 +66,20 @@ class Peliculas extends Component {
         <main className="cont">
           <form onSubmit={(event) => this.evitarSubmit(event)}>
             <label>Filtrar contenido por: </label>
-            <input type="text" placeholder="escribir acá..." onChange={(event) => this.controlarCambios(event)} value={this.state.filtro} />
-           
+            <input
+              type="text"
+              placeholder="escribir acá..."
+              onChange={(event) => this.controlarCambios(event)}
+              value={this.state.filtro}
+            />
           </form>
 
-          <h1>{titulo}</h1>
+          <h1>Películas en Cartelera</h1>
 
           <section className="info">
             {this.state.datos.length === 0 ? (
               <p>Cargando…</p>
-            ) : ( 
+            ) : (
               peliculasFiltradas.map((item) => (
                 <SeccionItem
                   key={item.id}
@@ -95,7 +91,9 @@ class Peliculas extends Component {
           </section>
 
           <div className="mas">
-            <button type="button" onClick={this.cargarMas}>Ver más</button>
+            <button type="button" onClick={this.cargarMas}>
+              Ver más
+            </button>
           </div>
         </main>
       </React.Fragment>
@@ -103,4 +101,4 @@ class Peliculas extends Component {
   }
 }
 
-export default Peliculas;
+export default PeliculasCartelera;
