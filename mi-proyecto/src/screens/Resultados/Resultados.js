@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import SeccionItem from "../../components/SeccionItem/SeccionItem";
 import Menu from "../../components/Menu/Menu";
-class ResultadosP extends Component {
+class Resultados extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      resultadosP: [],
+      resultados: [],
       error: ""
     }
   }
@@ -13,21 +13,23 @@ class ResultadosP extends Component {
 
     const query = this.props.match.params.query;
     
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=6702edd122b3200dc3c322dcd7975956&language=es-ES&query=${query}`)
+
+    fetch("https://api.themoviedb.org/3/search/" + this.props.match.params.tipo + `?api_key=6702edd122b3200dc3c322dcd7975956&language=es-ES&query=${query}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.results) {
           this.setState({
-            resultadosP: data.results,
+            resultados: data.results,
           })
         } else {
           this.setState({
-            resultadosP: [],
+            resultados: [],
             error: `No se encontraron resultados para ${query}`
           })
         }
       })
       .catch((e) => console.log(e));
+
   }
 
 
@@ -42,10 +44,10 @@ class ResultadosP extends Component {
       { ruta: "/favoritos", nombre: "Favoritas" },
 
     ];
-    if (this.state.resultadosP.length === 0) {
+    if (this.state.resultados.length === 0) {
       <p>Cargando...</p>
     }
-   
+
 
     return (
 
@@ -55,11 +57,11 @@ class ResultadosP extends Component {
           <h1>Resultados de búsqueda de: {this.props.match.params.query} </h1>
 
           <div className="infos">
-            <h2>Peliculas</h2>
+            <h2>{this.props.match.params.tipo}</h2>
           </div>
-          {this.state.resultadosP.length > 0 ?
+          {this.state.resultados.length > 0 ?
             (<section className="seccion">
-              {this.state.resultadosP.map((item) => (
+              {this.state.resultados.map((item) => (
                 <SeccionItem
                   key={item.id}
                   data={item}
@@ -69,13 +71,14 @@ class ResultadosP extends Component {
             </section>) :
             (<p>No hay resultados para {this.props.match.params.query}</p>)}
         </div>
+        
 
-      </React.Fragment>
+      </React.Fragment >
 
     );
   }
 
 }
 
-export default ResultadosP;
+export default Resultados;
 
