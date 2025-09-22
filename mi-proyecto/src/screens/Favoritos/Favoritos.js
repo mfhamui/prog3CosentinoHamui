@@ -50,7 +50,7 @@ class Favoritos extends Component {
                         <h2>Series favoritas</h2>
                     </div>
                     {favoritosS.length > 0 ?
-                        (<section className="cards-grid">
+                        (<section className="dos">
                             {favoritosS.map((item) => (
                                 <SeccionItem
                                     key={item.id}
@@ -66,7 +66,7 @@ class Favoritos extends Component {
                         <h2>Peliculas favoritas</h2>
                     </div>
                     {favoritosP.length > 0 ?
-                        (<section className="cards-grid">
+                        (<section className="seccion">
                             {favoritosP.map((item) => (
                                 <SeccionItem
                                     key={item.id}
