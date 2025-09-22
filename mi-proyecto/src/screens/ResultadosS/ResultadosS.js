@@ -10,7 +10,7 @@ class Resultados extends Component {
       error: ""
     }
   }
-  componentDidMount(query) {
+  componentDidMount() {
 
     const query = this.props.match.params.query;
     //series
@@ -71,7 +71,7 @@ class Resultados extends Component {
       <React.Fragment>
         <Menu itemsMenu={itemsMenu} />
         <div>
-          <h1>Resultados de búsqueda de: {query} </h1>
+          <h1>Resultados de búsqueda de: {this.props.match.params.query} </h1>
           <div className="infos">
             <h2>Series</h2>
           </div>

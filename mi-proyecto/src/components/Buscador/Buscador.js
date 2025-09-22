@@ -28,7 +28,7 @@ class Buscador extends Component {
           type="text"
           placeholder="Buscar..."
           value={this.state.query}
-          onChange={this.controlarCambios}
+          onChange={(event)=>this.controlarCambios(event)}
         />
 
         <button type="submit">Buscar</button>
