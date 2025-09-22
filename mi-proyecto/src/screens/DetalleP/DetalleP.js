@@ -90,10 +90,8 @@ class DetalleP extends Component {
         const datos = this.state.data;
         let titulo = datos.title
 
-        let poster = "/assets/img/placeholder-poster.svg";
-        if (datos.poster_path) {
-            poster = "https://image.tmdb.org/t/p/w342" + datos.poster_path;
-        }
+        let poster =  "https://image.tmdb.org/t/p/w342" + datos.poster_path;
+        
 
         const descripcion = datos.overview;
 
