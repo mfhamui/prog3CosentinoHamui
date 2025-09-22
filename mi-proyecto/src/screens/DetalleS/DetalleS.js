@@ -82,10 +82,8 @@ class DetalleS extends Component {
 
         let titulo = datos.name
 
-        let poster = "/assets/img/placeholder-poster.svg";
-        if (datos.poster_path) {
-            poster = "https://image.tmdb.org/t/p/w342" + datos.poster_path;
-        }
+        let poster =  "https://image.tmdb.org/t/p/w342" + datos.poster_path;
+        
 
         let descripcion = datos.overview
 

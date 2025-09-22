@@ -103,13 +103,13 @@ class SeccionItem extends Component {
     }
    
     
-    let poster = "/assets/img/placeholder-poster.svg";
-    if (datos.poster_path) {
-      poster = "https://image.tmdb.org/t/p/w342" + datos.poster_path;
-    }
+    
+
+    let poster = "https://image.tmdb.org/t/p/w342" + datos.poster_path;
+
 
     
-    const descripcion = datos.overview ? datos.overview : "Sin descripción disponible.";
+    const descripcion =  datos.overview ;
 
 
   let detalle = "";
