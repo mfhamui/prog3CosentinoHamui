@@ -5,11 +5,12 @@ import Home from "./screens/Home/Home";
 import Resultados from "./screens/Resultados/Resultados";
 import PeliculasPopulares from "./screens/PeliculasPopulares/PeliculasPopulares";
 import PeliculasCartelera from "./screens/PeliculasCartelera/PeliculasCartelera";
-import Series from "./screens/Series/Series";
 import NotFound from "./screens/Notfound/Notfound";
 import DetalleP from "./screens/DetalleP/DetalleP";
 import Favoritos from "./screens/Favoritos/Favoritos";
 import DetalleS from "./screens/DetalleS/DetalleS";
+import SeriesP from "./screens/SeriesP/SeriesP";
+import SeriesE from "./screens/SeriesE/SeriesE";
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
       <Route path="/resultados/:query" component={Resultados} /> 
       <Route path="/peliculas/populares" component={PeliculasPopulares} />
       <Route path="/peliculas/cartelera" component={PeliculasCartelera} />  
-      <Route path="/series/:categoria" component={Series} />
+      <Route path="/series/popular" component={SeriesP} />
+      <Route path="/series/on_the_air" component={SeriesE} />
       <Route path="/favoritos" component={Favoritos} />
       <Route component={NotFound} />
     </Switch>

@@ -18,8 +18,7 @@ class SeriesP extends Component {
   }
 
   cargarMas = () => {
-    const categoria = this.props.match.params.categoria;
-    const url = "https://api.themoviedb.org/3/tv/" + categoria + "?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=" + this.state.contador;
+    const url = "https://api.themoviedb.org/3/tv/popular?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=" + this.state.contador;
 
     fetch(url)
       .then((response) => response.json())
@@ -56,8 +55,8 @@ class SeriesP extends Component {
         <Menu
           itemsMenu={[
             { ruta: "/", nombre: "Home" },
-            { ruta: "/peliculas/popular", nombre: "Películas Populares" },
-            { ruta: "/peliculas/now_playing", nombre: "Películas en Cartelera" },
+            { ruta: "/peliculas/populares", nombre: "Películas Populares" },
+            { ruta: "/peliculas/cartelera", nombre: "Películas en Cartelera" },
             { ruta: "/series/popular", nombre: "Series Populares" },
             { ruta: "/series/on_the_air", nombre: "Series en Emisión" },
             { ruta: "/favoritos", nombre: "Favoritas" },
