@@ -45,11 +45,13 @@ class PeliculasPopulares extends Component {
   }
 
   render() {
-    const peliculasFiltradas =
-      this.state.filtro === ""
-        ? this.state.datos
-        : this.filtrarPeliculas(this.state.filtro.toLowerCase());
-
+    let peliculasFiltradas
+    if (this.state.filtro === ""){
+         peliculasFiltradas=this.state.datos
+    }else{
+         peliculasFiltradas=this.filtrarPeliculas(this.state.filtro.toLowerCase())
+    }
+  
     return (
       <React.Fragment>
         <Menu

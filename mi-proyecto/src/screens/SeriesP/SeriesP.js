@@ -46,10 +46,13 @@ class SeriesP extends Component {
   }
 
   render() {
-    const seriesFiltradas =
-      this.state.filtro === ""
-        ? this.state.datos
-        : this.filtrarSeries(this.state.filtro.toLowerCase());
+   let seriesFiltradas 
+    if (this.state.filtro === ""){
+        seriesFiltradas=this.state.datos
+    }else{
+        seriesFiltradas=this.filtrarSeries(this.state.filtro.toLowerCase())
+    }
+  
     return (
       <React.Fragment>
         <Menu
