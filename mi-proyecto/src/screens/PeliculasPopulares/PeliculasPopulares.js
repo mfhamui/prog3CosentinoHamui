@@ -57,8 +57,8 @@ class PeliculasPopulares extends Component {
             { ruta: "/", nombre: "Home" },
             { ruta: "/peliculas/populares", nombre: "Películas Populares" },
             { ruta: "/peliculas/cartelera", nombre: "Películas en Cartelera" },
-            { ruta: "/series/populares", nombre: "Series Populares" },
-            { ruta: "/series/emision", nombre: "Series en Emisión" },
+            { ruta: "/series/popular", nombre: "Series Populares" },
+            { ruta: "/series/on_the_air", nombre: "Series en Emisión" },
             { ruta: "/favoritos", nombre: "Favoritas" },
           ]}
         />
