@@ -39,6 +39,8 @@ class SeccionItem extends Component {
   }
 
   Fav() {
+    console.log(this.props);
+    
     const id = this.state.data.id;
    
     let item
@@ -58,9 +60,12 @@ class SeccionItem extends Component {
     } else {
       let filtrados = favs.filter(favor => favor.id!==id);
       this.guardarFav(filtrados, item);
-      this.setState({ fav: false });
+      this.setState({ fav: false }, () => this.props.actualizar(this.state.data.id));
+         if (this.props.actualizar) {
+                this.props.actualizar(this.state.data.id);
+            }
     }
-
+/*() => this.props.actualizar(this.state.data.id)*/ 
   }
 
   componentDidMount() {

@@ -13,10 +13,7 @@ class PeliculasCartelera extends Component {
   }
 
   componentDidMount() {
-    this.cargarMas();
-  }
 
-  cargarMas = () => {
     const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=${this.state.contador}`;
 
     fetch(url)
@@ -28,7 +25,10 @@ class PeliculasCartelera extends Component {
         })
       )
       .catch((error) => console.log(error));
-  };
+  
+  }
+
+ 
 
   evitarSubmit(event) {
     event.preventDefault();
@@ -44,12 +44,15 @@ class PeliculasCartelera extends Component {
     );
   }
 
-  render() {
-    const peliculasFiltradas =
-      this.state.filtro === ""
-        ? this.state.datos
-        : this.filtrarPeliculas(this.state.filtro.toLowerCase());
 
+  render() {
+    let peliculasFiltradas 
+    if (this.state.filtro === ""){
+         peliculasFiltradas=this.state.datos
+    }else{
+         peliculasFiltradas=this.filtrarPeliculas(this.state.filtro.toLowerCase())
+    }
+  
     return (
       <React.Fragment>
         <Menu
@@ -85,6 +88,7 @@ class PeliculasCartelera extends Component {
                   key={item.id}
                   data={item}
                   claseExtra={this.props.cant === 6 ? "seis" : "cuatro"}
+                  actualizar={() => {}} 
                 />
               ))
             )}

@@ -66,6 +66,7 @@ class Resultados extends Component {
                   key={item.id}
                   data={item}
                   claseExtra="seis"
+                  actualizar={() => {}} 
                 />
               ))}
             </section>) :

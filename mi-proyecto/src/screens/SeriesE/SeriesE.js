@@ -13,11 +13,7 @@ class SeriesE extends Component {
     };
   }
   componentDidMount() {
-    this.cargarMas();
-
-  }
-
-  cargarMas = () => {
+  
     const url = "https://api.themoviedb.org/3/tv/on_the_air?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=" + this.state.contador;
 
     fetch(url)
@@ -46,10 +42,14 @@ class SeriesE extends Component {
   }
 
   render() {
-    const seriesFiltradas =
-      this.state.filtro === ""
-        ? this.state.datos
-        : this.filtrarSeries(this.state.filtro.toLowerCase());
+    let seriesFiltradas 
+    if (this.state.filtro === ""){
+         seriesFiltradas=this.state.datos
+    }else{
+         seriesFiltradas=this.filtrarSeries(this.state.filtro.toLowerCase())
+    }
+  
+  
     return (
       <React.Fragment>
         <Menu
@@ -80,6 +80,7 @@ class SeriesE extends Component {
                   key={item.id}
                   data={item}
                   claseExtra={this.props.cant === 6 ? "seis" : "cuatro"}
+                  actualizar={() => {}} 
                 />
               ))
             )}
