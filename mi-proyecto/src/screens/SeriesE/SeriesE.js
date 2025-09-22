@@ -3,7 +3,7 @@ import Menu from "../../components/Menu/Menu";
 import SeccionItem from "../../components/SeccionItem/SeccionItem";
 
 
-class Series extends Component {
+class SeriesE extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,8 +47,6 @@ class Series extends Component {
   }
 
   render() {
-    const categoria = this.props.match.params.categoria;
-    const titulo = categoria === "on_the_air" ? "Series en emisión" : "Series populares";
     const seriesFiltradas =
       this.state.filtro === ""
         ? this.state.datos
@@ -72,7 +70,7 @@ class Series extends Component {
             <input type="text" placeholder="escribir acá..." onChange={(event) => this.controlarCambios(event)} value={this.state.filtro} />
           </form>
 
-          <h1>{titulo}</h1>
+          <h1>Series en Emisión</h1>
 
           <section className="info">
             {this.state.datos.length === 0 ? (
@@ -100,4 +98,4 @@ class Series extends Component {
 
 }
 
-export default Series;
+export default SeriesE;
