@@ -33,6 +33,7 @@ class Seccion extends Component {
                     key={item.id}
                     data={item}
                     claseExtra={this.props.cant === 6 ? "seis" : "cuatro"}
+                    actualizar={() => {}} 
                   />
                 );
               } else {

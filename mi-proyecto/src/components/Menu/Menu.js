@@ -10,11 +10,7 @@ const items = props.itemsMenu
     <React.Fragment>
     <h1 className= "titulo">TV Fan </h1>
     <nav className="nav">
-      <ul className="user">
-        <li>
-          <img src="/assets/img/logo.png" alt="" />
-        </li>
-      </ul>
+     
       <ul className="menu">
         {items.map((item, idx) => (
           <ElementoMenu

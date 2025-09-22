@@ -33,7 +33,7 @@ class Buscador extends Component {
           value={this.state.query}
           onChange={(event) => this.controlarCambios(event)}
         />
-        <label>
+        <label className="boton">
           <input
             type="radio"
             value="tv"
@@ -42,7 +42,7 @@ class Buscador extends Component {
           />
           series
         </label>
-        <label>
+        <label className="boton">
           <input
             type="radio"
             value="movie"

@@ -28,7 +28,6 @@ class PeliculasCartelera extends Component {
   
   }
 
- 
 
   evitarSubmit(event) {
     event.preventDefault();
