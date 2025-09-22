@@ -48,8 +48,8 @@ class SeriesP extends Component {
     this.setState({ filtro: event.target.value })
   }
   filtrarSeries(textoAFiltrar) {
-    return this.state.datos.filter((peli) =>
-      peli.title.toLowerCase().includes(textoAFiltrar)
+    return this.state.datos.filter((serie) =>
+      serie.name.toLowerCase().includes(textoAFiltrar)
     );
   }
 
