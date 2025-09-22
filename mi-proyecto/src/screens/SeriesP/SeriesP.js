@@ -13,11 +13,7 @@ class SeriesP extends Component {
     };
   }
   componentDidMount() {
-    this.cargarMas();
-
-  }
-
-  cargarMas = () => {
+   
     const url = "https://api.themoviedb.org/3/tv/popular?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=" + this.state.contador;
 
     fetch(url)
@@ -83,6 +79,7 @@ class SeriesP extends Component {
                   key={item.id}
                   data={item}
                   claseExtra={this.props.cant === 6 ? "seis" : "cuatro"}
+                  actualizar={() => {}} 
                 />
               ))
             )}

@@ -10,7 +10,7 @@ class Favoritos extends Component {
             favoritosS: []
         }
     }
-
+ 
     componentDidMount() {
         let peliculas = JSON.parse(localStorage.getItem("peliculasFavoritas"));
         if (peliculas== null) {peliculas= [] } 
@@ -23,9 +23,21 @@ class Favoritos extends Component {
             favoritosS: series
         })
     }
+    
+actualizarPelis(id) {
+  let nuevasPelis = this.state.favoritosP.filter(peli => peli.id !== id);
+  this.setState({ favoritosP: nuevasPelis });
+ 
+}
 
+actualizarSeries(id) {
+  let nuevaSerie = this.state.favoritosS.filter(serie => serie.id !== id);
+  this.setState({ favoritosS: nuevaSerie });
+ 
+}
     render() {
-        
+        const favoritosP  = this.state.favoritosP;
+        const favoritosS = this.state.favoritosS;
 
         let itemsMenu = [
             { ruta: "/", nombre: "Home" },
@@ -37,8 +49,6 @@ class Favoritos extends Component {
 
         ];
 
-
-
         return (
 
             <React.Fragment>
@@ -48,13 +58,13 @@ class Favoritos extends Component {
                     <div className="infos">
                         <h2>Series favoritas</h2>
                     </div>
-                    {this.state.favoritosS.length > 0 ?
+                    {favoritosS.length > 0 ?
                         (<section className="dos">
-                            {this.state.favoritosS.map((item) => (
+                            {favoritosS.map((item) => (
                                 <SeccionItem
                                     key={item.id}
                                     data={item}
-                                    tipo="tv"
+                                    actualizar={(id) => this.actualizarSeries(id)}
                                     claseExtra="cuatro"
                                 />
                             ))}
@@ -64,13 +74,13 @@ class Favoritos extends Component {
                     <div className="infos">
                         <h2>Peliculas favoritas</h2>
                     </div>
-                    {this.state.favoritosP.length > 0 ?
+                    {favoritosP.length > 0 ?
                         (<section className="dos">
-                            {this.state.favoritosP.map((item) => (
+                            {favoritosP.map((item) => (
                                 <SeccionItem
                                     key={item.id}
                                     data={item}
-                                    tipo="movie"
+                                    actualizar={(id) => this.actualizarPelis(id)}
                                     claseExtra="cuatro"
                                 />
                             ))}

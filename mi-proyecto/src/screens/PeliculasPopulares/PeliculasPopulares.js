@@ -13,10 +13,7 @@ class PeliculasPopulares extends Component {
   }
 
   componentDidMount() {
-    this.cargarMas();
-  }
-
-  cargarMas = () => {
+    
     const url = `https://api.themoviedb.org/3/movie/popular?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=${this.state.contador}`;
 
     fetch(url)
@@ -86,6 +83,7 @@ class PeliculasPopulares extends Component {
                 <SeccionItem
                   key={item.id}
                   data={item}
+                  actualizar={() => {}}  
                   claseExtra={this.props.cant === 6 ? "seis" : "cuatro"}
                 />
               ))
