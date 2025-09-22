@@ -10,13 +10,9 @@ class Resultados extends Component {
       error: ""
     }
   }
-  componentDidMount() {
+  componentDidMount(query) {
 
     const query = this.props.match.params.query;
-    this.buscar(query);
-  }
-  buscar = (query) => {
-
     //series
     fetch(`https://api.themoviedb.org/3/search/tv?api_key=6702edd122b3200dc3c322dcd7975956&language=es-ES&query=${query}`)
       .then((response) => response.json())
@@ -51,8 +47,8 @@ class Resultados extends Component {
         }
       })
       .catch((e) => console.log(e));
-
   }
+
 
   render() {
 
@@ -68,9 +64,7 @@ class Resultados extends Component {
     if (this.state.resultadosP.length === 0 && this.state.resultadosS.length === 0) {
       <p>Cargando...</p>
     }
-    const resultadosP = this.state.resultadosP;
-    const resultadosS = this.state.resultadosS;
-    const query = this.props.match.params.query;
+   
 
     return (
 
@@ -81,9 +75,9 @@ class Resultados extends Component {
           <div className="infos">
             <h2>Series</h2>
           </div>
-          {resultadosS.length > 0 ?
+          {this.state.resultadosS.length > 0 ?
             (<section className="seccion">
-              {resultadosS.map((item) => (
+              {this.state.resultadosS.map((item) => (
                 <SeccionItem
                   key={item.id}
                   data={item}
@@ -91,14 +85,14 @@ class Resultados extends Component {
                 />
               ))}
             </section>) :
-            (<p>No hay resultados para {query} </p>)}
+            (<p>No hay resultados para {this.props.match.params.query} </p>)}
 
           <div className="infos">
             <h2>Peliculas</h2>
           </div>
-          {resultadosP.length > 0 ?
+          {this.state.resultadosP.length > 0 ?
             (<section className="seccion">
-              {resultadosP.map((item) => (
+              {this.state.resultadosP.map((item) => (
                 <SeccionItem
                   key={item.id}
                   data={item}
@@ -106,7 +100,7 @@ class Resultados extends Component {
                 />
               ))}
             </section>) :
-            (<p>No hay resultados para {query}</p>)}
+            (<p>No hay resultados para {this.props.match.params.query}</p>)}
         </div>
 
       </React.Fragment>

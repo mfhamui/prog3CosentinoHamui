@@ -10,10 +10,8 @@ class Favoritos extends Component {
             favoritosS: []
         }
     }
+
     componentDidMount() {
-        this.cargarFavoritos();
-    }
-    cargarFavoritos() {
         let peliculas = JSON.parse(localStorage.getItem("peliculasFavoritas"));
         if (peliculas== null) {peliculas= [] } 
         
@@ -27,8 +25,7 @@ class Favoritos extends Component {
     }
 
     render() {
-        const favoritosP  = this.state.favoritosP;
-        const favoritosS = this.state.favoritosS;
+        
 
         let itemsMenu = [
             { ruta: "/", nombre: "Home" },
@@ -40,6 +37,8 @@ class Favoritos extends Component {
 
         ];
 
+
+
         return (
 
             <React.Fragment>
@@ -49,9 +48,9 @@ class Favoritos extends Component {
                     <div className="infos">
                         <h2>Series favoritas</h2>
                     </div>
-                    {favoritosS.length > 0 ?
+                    {this.state.favoritosS.length > 0 ?
                         (<section className="dos">
-                            {favoritosS.map((item) => (
+                            {this.state.favoritosS.map((item) => (
                                 <SeccionItem
                                     key={item.id}
                                     data={item}
@@ -65,9 +64,9 @@ class Favoritos extends Component {
                     <div className="infos">
                         <h2>Peliculas favoritas</h2>
                     </div>
-                    {favoritosP.length > 0 ?
+                    {this.state.favoritosP.length > 0 ?
                         (<section className="dos">
-                            {favoritosP.map((item) => (
+                            {this.state.favoritosP.map((item) => (
                                 <SeccionItem
                                     key={item.id}
                                     data={item}
