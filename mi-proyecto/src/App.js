@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 
 import Home from "./screens/Home/Home"; 
 import ResultadosS from "./screens/ResultadosS/ResultadosS";
+import ResultadosP from "./screens/ResultadosP/ResultadosP";
 import PeliculasPopulares from "./screens/PeliculasPopulares/PeliculasPopulares";
 import PeliculasCartelera from "./screens/PeliculasCartelera/PeliculasCartelera";
 import NotFound from "./screens/Notfound/Notfound";

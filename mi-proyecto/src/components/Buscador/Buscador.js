@@ -15,11 +15,12 @@ class Buscador extends Component {
   }
 
 
-  enviar (event){
+  evitarSubmit (event){
     event.preventDefault();
-  
-    this.props.history.push("/resultados/" + this.state.query);
+    
+    this.props.history.push("/resultados/movie/" + this.state.query);
   }
+
 
   render() {
     return (
@@ -30,6 +31,14 @@ class Buscador extends Component {
           value={this.state.query}
           onChange={(event)=>this.controlarCambios(event)}
         />
+        <label> 
+          <input type="radio" />
+        series
+        </label>
+        <label> 
+          <input type="radio" />
+        peliculas
+        </label>
 
         <button type="submit">Buscar</button>
       </form>
