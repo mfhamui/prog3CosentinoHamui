@@ -13,7 +13,7 @@ class PeliculasPopulares extends Component {
   }
 
   componentDidMount() {
-    
+
     const url = `https://api.themoviedb.org/3/movie/popular?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=${this.state.contador}`;
 
     fetch(url)
@@ -27,17 +27,17 @@ class PeliculasPopulares extends Component {
       .catch((error) => console.log(error));
   };
 
-    
-    cargarMas() {
-        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=${this.state.contador}`)
-        .then(res => res.json())
-        .then(res => this.setState({
-            datos: this.state.datos.concat(res.results),
-            contador: this.state.contador + 1
-        }))
-        .catch(err => console.error(err));
-            this.setState(({ contador: this.state.contador + 1 }));
-        };
+
+  cargarMas() {
+    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=${this.state.contador}`)
+      .then(res => res.json())
+      .then(res => this.setState({
+        datos: this.state.datos.concat(res.results),
+        contador: this.state.contador + 1
+      }))
+      .catch(err => console.error(err));
+    this.setState(({ contador: this.state.contador + 1 }));
+  };
 
   evitarSubmit(event) {
     event.preventDefault();
@@ -55,12 +55,12 @@ class PeliculasPopulares extends Component {
 
   render() {
     let peliculasFiltradas
-    if (this.state.filtro === ""){
-         peliculasFiltradas=this.state.datos
-    }else{
-         peliculasFiltradas=this.filtrarPeliculas(this.state.filtro.toLowerCase())
+    if (this.state.filtro === "") {
+      peliculasFiltradas = this.state.datos
+    } else {
+      peliculasFiltradas = this.filtrarPeliculas(this.state.filtro.toLowerCase())
     }
-  
+
     return (
       <React.Fragment>
         <Menu
@@ -95,7 +95,7 @@ class PeliculasPopulares extends Component {
                 <SeccionItem
                   key={item.id}
                   data={item}
-                  actualizar={() => {}}  
+                  actualizar={() => { }}
                   claseExtra={this.props.cant === 6 ? "seis" : "cuatro"}
                 />
               ))
@@ -103,7 +103,7 @@ class PeliculasPopulares extends Component {
           </section>
 
           <div className="mas">
-           <button type="button" onClick= {() => this.cargarMas()}>
+            <button type="button" onClick={() => this.cargarMas()}>
               Ver más
             </button>
           </div>

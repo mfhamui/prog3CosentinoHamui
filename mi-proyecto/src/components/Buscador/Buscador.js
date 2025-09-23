@@ -20,7 +20,7 @@ class Buscador extends Component {
   evitarSubmit(event) {
     event.preventDefault();
 
-    this.props.history.push("/resultados/"+ this.state.tipo + "/" + this.state.query);
+    this.props.history.push("/resultados/" + this.state.tipo + "/" + this.state.query);
   }
 
 

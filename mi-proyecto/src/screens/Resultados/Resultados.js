@@ -12,7 +12,7 @@ class Resultados extends Component {
   componentDidMount() {
 
     const query = this.props.match.params.query;
-    
+
 
     fetch("https://api.themoviedb.org/3/search/" + this.props.match.params.tipo + `?api_key=6702edd122b3200dc3c322dcd7975956&language=es-ES&query=${query}`)
       .then((response) => response.json())
@@ -66,13 +66,13 @@ class Resultados extends Component {
                   key={item.id}
                   data={item}
                   claseExtra="seis"
-                  actualizar={() => {}} 
+                  actualizar={() => { }}
                 />
               ))}
             </section>) :
             (<p>No hay resultados para {this.props.match.params.query}</p>)}
         </div>
-        
+
 
       </React.Fragment >
 

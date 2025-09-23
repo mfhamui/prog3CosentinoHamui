@@ -37,7 +37,7 @@ class DetalleP extends Component {
             this.guardarFav(favs, item);
             this.setState({ fav: true });
         } else {
-            let filtrados = favs.filter(favor => favor.id!==data.id)
+            let filtrados = favs.filter(favor => favor.id !== data.id)
             this.guardarFav(filtrados, item);
             this.setState({ fav: false });
         }
@@ -51,14 +51,14 @@ class DetalleP extends Component {
         fetch(endpoint)
             .then((res) => res.json())
             .then((data) => {
-            let item = "peliculasFavoritas";
-     
+                let item = "peliculasFavoritas";
 
-      
-      let favs = this.Favoritos(item);
 
-      
-      let estafav = favs.filter(favorito => favorito.id === data.id);
+
+                let favs = this.Favoritos(item);
+
+
+                let estafav = favs.filter(favorito => favorito.id === data.id);
 
                 this.setState({
                     data: data,
@@ -90,8 +90,8 @@ class DetalleP extends Component {
         const datos = this.state.data;
         let titulo = datos.title
 
-        let poster =  "https://image.tmdb.org/t/p/w342" + datos.poster_path;
-        
+        let poster = "https://image.tmdb.org/t/p/w342" + datos.poster_path;
+
 
         const descripcion = datos.overview;
 

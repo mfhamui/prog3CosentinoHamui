@@ -51,7 +51,7 @@ function Home() {
       <Menu itemsMenu={itemsMenu} />
       <Secciones lista={secciones} />
       <Footer />
-      
+
     </React.Fragment>
   );
 }

@@ -20,25 +20,25 @@ class PeliculasCartelera extends Component {
       .then((response) => response.json())
       .then((data) =>
         this.setState({
-          datos:data.results,
+          datos: data.results,
           contador: this.state.contador + 1
         })
       )
       .catch((error) => console.log(error));
-  
+
   }
 
-  
-    cargarMas() {
-        fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=${this.state.contador}`,)
-        .then(res => res.json())
-        .then(res => this.setState({
-            datos: this.state.datos.concat(res.results),
-            contador: this.state.contador + 1
-        }))
-        .catch(err => console.error(err));
-            this.setState(({ contador: this.state.contador + 1 }));
-        };
+
+  cargarMas() {
+    fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=6702edd122b3200dc3c322dcd7975956&language=es-AR&page=${this.state.contador}`,)
+      .then(res => res.json())
+      .then(res => this.setState({
+        datos: this.state.datos.concat(res.results),
+        contador: this.state.contador + 1
+      }))
+      .catch(err => console.error(err));
+    this.setState(({ contador: this.state.contador + 1 }));
+  };
 
 
   evitarSubmit(event) {
@@ -57,13 +57,13 @@ class PeliculasCartelera extends Component {
 
 
   render() {
-    let peliculasFiltradas 
-    if (this.state.filtro === ""){
-         peliculasFiltradas=this.state.datos
-    }else{
-         peliculasFiltradas=this.filtrarPeliculas(this.state.filtro.toLowerCase())
+    let peliculasFiltradas
+    if (this.state.filtro === "") {
+      peliculasFiltradas = this.state.datos
+    } else {
+      peliculasFiltradas = this.filtrarPeliculas(this.state.filtro.toLowerCase())
     }
-  
+
     return (
       <React.Fragment>
         <Menu
@@ -99,14 +99,14 @@ class PeliculasCartelera extends Component {
                   key={item.id}
                   data={item}
                   claseExtra={this.props.cant === 6 ? "seis" : "cuatro"}
-                  actualizar={() => {}} 
+                  actualizar={() => { }}
                 />
               ))
             )}
           </section>
 
           <div className="mas">
-            <button type="button" onClick= {() => this.cargarMas()}>
+            <button type="button" onClick={() => this.cargarMas()}>
               Ver más
             </button>
           </div>

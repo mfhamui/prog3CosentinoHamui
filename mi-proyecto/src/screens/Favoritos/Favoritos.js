@@ -10,33 +10,33 @@ class Favoritos extends Component {
             favoritosS: []
         }
     }
- 
+
     componentDidMount() {
         let peliculas = JSON.parse(localStorage.getItem("peliculasFavoritas"));
-        if (peliculas== null) {peliculas= [] } 
-        
+        if (peliculas == null) { peliculas = [] }
+
         let series = JSON.parse(localStorage.getItem("seriesFavoritas"));
-        if (series== null){ series = [];}
+        if (series == null) { series = []; }
 
         this.setState({
             favoritosP: peliculas,
             favoritosS: series
         })
     }
-    
-actualizarPelis(id) {
-  let nuevasPelis = this.state.favoritosP.filter(peli => peli.id !== id);
-  this.setState({ favoritosP: nuevasPelis });
- 
-}
 
-actualizarSeries(id) {
-  let nuevaSerie = this.state.favoritosS.filter(serie => serie.id !== id);
-  this.setState({ favoritosS: nuevaSerie });
- 
-}
+    actualizarPelis(id) {
+        let nuevasPelis = this.state.favoritosP.filter(peli => peli.id !== id);
+        this.setState({ favoritosP: nuevasPelis });
+
+    }
+
+    actualizarSeries(id) {
+        let nuevaSerie = this.state.favoritosS.filter(serie => serie.id !== id);
+        this.setState({ favoritosS: nuevaSerie });
+
+    }
     render() {
-        const favoritosP  = this.state.favoritosP;
+        const favoritosP = this.state.favoritosP;
         const favoritosS = this.state.favoritosS;
 
         let itemsMenu = [
@@ -54,7 +54,7 @@ actualizarSeries(id) {
             <React.Fragment>
                 <Menu itemsMenu={itemsMenu} />
                 <div>
-                   
+
                     <div className="infos">
                         <h2>Series favoritas</h2>
                     </div>

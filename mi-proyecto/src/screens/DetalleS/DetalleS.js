@@ -6,7 +6,7 @@ class DetalleS extends Component {
         super(props);
         this.state = {
             data: [],
-           fav: false
+            fav: false
 
         };
     }
@@ -39,7 +39,7 @@ class DetalleS extends Component {
             this.guardarFav(favs, item);
             this.setState({ fav: true });
         } else {
-            let filtrados = favs.filter(favor => favor.id!==data.id)
+            let filtrados = favs.filter(favor => favor.id !== data.id)
             this.guardarFav(filtrados, item);
             this.setState({ fav: false });
         }
@@ -75,15 +75,15 @@ class DetalleS extends Component {
             { ruta: "/favoritos", nombre: "Favoritas" },
 
         ];
-        if (this.state.data.length === 0){
+        if (this.state.data.length === 0) {
             <p>Cargando...</p>
-         }
+        }
         const datos = this.state.data;
 
         let titulo = datos.name
 
-        let poster =  "https://image.tmdb.org/t/p/w342" + datos.poster_path;
-        
+        let poster = "https://image.tmdb.org/t/p/w342" + datos.poster_path;
+
 
         let descripcion = datos.overview
 
@@ -94,7 +94,7 @@ class DetalleS extends Component {
 
         let genre = "Sin género disponible.";
         if (datos.genres && datos.genres.length > 0) {
-          genre = datos.genres.map(function(g){ return g.name; }); 
+            genre = datos.genres.map(function (g) { return g.name; });
         }
 
 

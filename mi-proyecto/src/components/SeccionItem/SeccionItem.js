@@ -10,13 +10,13 @@ class SeccionItem extends Component {
       verMas: false,
       textoBoton: "ver descripcion",
       clase: "noMostrar",
-       fav: false 
+      fav: false
     };
   }
 
-  
-   esTV() {
-    if ( this.state.data.name) {
+
+  esTV() {
+    if (this.state.data.name) {
       return true;
     } else {
       return false;
@@ -40,9 +40,9 @@ class SeccionItem extends Component {
 
   Fav() {
     console.log(this.props);
-    
+
     const id = this.state.data.id;
-   
+
     let item
 
     if (this.esTV()) {
@@ -58,14 +58,13 @@ class SeccionItem extends Component {
       this.guardarFav(favs, item);
       this.setState({ fav: true });
     } else {
-      let filtrados = favs.filter(favor => favor.id!==id);
+      let filtrados = favs.filter(favor => favor.id !== id);
       this.guardarFav(filtrados, item);
       this.setState({ fav: false }, () => this.props.actualizar(this.state.data.id));
-         if (this.props.actualizar) {
-                this.props.actualizar(this.state.data.id);
-            }
+      if (this.props.actualizar) {
+        this.props.actualizar(this.state.data.id);
+      }
     }
-/*() => this.props.actualizar(this.state.data.id)*/ 
   }
 
   componentDidMount() {
@@ -78,7 +77,7 @@ class SeccionItem extends Component {
       item = "peliculasFavoritas"
     }
     let favs = this.Favoritos(item);
-    let estafav = favs.filter(favorito => favorito.id===id)
+    let estafav = favs.filter(favorito => favorito.id === id)
     this.setState({
       fav: estafav.length > 0 ? true : false
     });
@@ -105,18 +104,18 @@ class SeccionItem extends Component {
         titulo = datos.title;
       }
     }
-   
-    
-    
+
+
+
 
     let poster = "https://image.tmdb.org/t/p/w342" + datos.poster_path;
 
 
-    
-    const descripcion =  datos.overview ;
+
+    const descripcion = datos.overview;
 
 
-  let detalle = "";
+    let detalle = "";
     if (this.esTV()) {
       detalle = "/detalle/tv/" + datos.id;
     } else {

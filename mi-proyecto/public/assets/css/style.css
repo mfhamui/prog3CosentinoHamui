@@ -1,21 +1,27 @@
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background: #0b1022;   
+  background: #0b1022;
   color: #e8ecff;
 }
-img { max-width: 100%; display: block;  border-radius: 12px;}
 
-/* Contenedor de Pelis/Series  */
+img {
+  max-width: 100%;
+  display: block;
+  border-radius: 12px;
+}
+
 .cont {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 20px;          
+  padding: 20px;
 }
 
-/* Título de Pelis/Series  */
 .cont h1 {
   font-size: 24px;
   margin: 10px 0 12px;
@@ -26,19 +32,18 @@ img { max-width: 100%; display: block;  border-radius: 12px;}
   color: #173b6b;
 }
 
-/* Listado de cards en Pelis/Series */
-.info {
+¿.info {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; 
+  justify-content: space-between;
   margin-bottom: 2%;
 }
 
-/* Botón Ver más */
 .mas {
   text-align: center;
   margin: 12px 0 24px;
 }
+
 .mas button {
   border: none;
   background: #1d4ed8;
@@ -52,15 +57,15 @@ img { max-width: 100%; display: block;  border-radius: 12px;}
 .det {
   display: flex;
   flex-direction: row;
-  align-items: center;       
-  justify-content: center;   
+  align-items: center;
+  justify-content: center;
   gap: 30px;
-  max-width: 800px;          
- margin: 40px auto;         
+  max-width: 800px;
+  margin: 40px auto;
   padding: 20px;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .det img {
@@ -70,12 +75,13 @@ img { max-width: 100%; display: block;  border-radius: 12px;}
   border-radius: 8px;
 }
 
-.titulodetalle{
+.titulodetalle {
   color: #0b1022;
-  
+
 }
-.boton{
-   margin-left: 10px;
+
+.boton {
+  margin-left: 10px;
   margin-right: 4px;
 }
 
@@ -85,10 +91,17 @@ img { max-width: 100%; display: block;  border-radius: 12px;}
     flex-direction: column;
     text-align: center;
     padding: 15px;
-    max-width: 95%; 
+    max-width: 95%;
   }
-  .cont { padding: 16px; }
-  .cont h1 { font-size: 18px; padding: 10px 12px; }
+
+  .cont {
+    padding: 16px;
+  }
+
+  .cont h1 {
+    font-size: 18px;
+    padding: 10px 12px;
+  }
 
   .detalle-info {
     margin-top: 15px;
